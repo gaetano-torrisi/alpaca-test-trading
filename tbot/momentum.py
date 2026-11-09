@@ -23,6 +23,9 @@ def symbol_classes(cfg: dict) -> dict[str, str]:
     for cls in ("stocks", "etf", "defensive", "leveraged"):
         for s in u.get(cls, []):
             out.setdefault(s, cls)
+    for name, lst in u.items():  # elenchi aggiuntivi (es. tech2016): sono azioni
+        for s in lst:
+            out.setdefault(s, "stocks")
     out.setdefault(cfg["regime"]["benchmark"], "etf")
     return out
 
@@ -38,8 +41,8 @@ def active_symbols(cfg: dict) -> list[str]:
 
 
 def all_symbols(cfg: dict) -> list[str]:
-    u = cfg["universe"]
-    return list(dict.fromkeys(u["etf"] + u["defensive"] + u["leveraged"] + u["stocks"] + [cfg["regime"]["benchmark"]]))
+    syms = [s for lst in cfg["universe"].values() for s in lst]
+    return list(dict.fromkeys(syms + [cfg["regime"]["benchmark"], "SPY", "QQQ"]))
 
 
 # ------------------------------------------------------------ indicatori

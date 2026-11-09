@@ -13,6 +13,10 @@ universe:
         XLRE, XLC, SMH, IBB, XBI, KRE, ITB, GDX, EFA, EEM]
   defensive: [TLT, IEF, GLD]   # comprabili anche con semaforo ROSSO
   leveraged: [TQQQ, SOXL, UPRO, TNA]   # ETF 3x: solo con semaforo VERDE
+  # Maggiori aziende tecnologiche/internet USA a inizio 2016 (capitalizzazione > ~15 mld $), ancora quotate.
+  # Elenco "di allora" per un backtest onesto: niente scelte fatte col senno di poi.
+  tech2016: [AAPL, GOOGL, MSFT, META, AMZN, ORCL, INTC, CSCO, IBM, QCOM, TXN, AVGO, CRM, ADBE,
+             PYPL, NFLX, EBAY, BKNG, CTSH, ACN, INTU, HPQ, HPE, AMAT, EA, MU, NVDA, ADI]
   nasdaq: [QQQ]                # Nasdaq 100
   nasdaq_leva: [TQQQ]          # Nasdaq 100 x3
   stocks: [NVDA, AAPL, MSFT, AMZN, META, GOOGL, TSLA, AMD, AVGO, NFLX,
@@ -70,25 +74,21 @@ backtest:
   split_date: "2022-01-01"   # periodo A = 2016-2021 (scelta), periodo B = 2022-oggi (verifica)
   variants:
     # --- riferimenti
-    - nome: spy_compra_e_tieni
-      modifiche: {universo_attivo: [benchmark_only], ranking.top_n: 1, regime.enabled: false,
-                  ranking.require_trend: false, ranking.require_positive: false, stop.atr_mult: 1000}
     - nome: qqq_compra_e_tieni
       modifiche: {universo_attivo: [benchmark_only], regime.benchmark: QQQ, ranking.top_n: 1, regime.enabled: false,
                   ranking.require_trend: false, ranking.require_positive: false, stop.atr_mult: 1000}
-    - nome: tqqq_compra_e_tieni
-      modifiche: {universo_attivo: [nasdaq_leva], ranking.top_n: 1, regime.enabled: false,
-                  ranking.no_filter_classes: [leveraged], stop.atr_mult: 1000}
-    # --- strategie Nasdaq con semaforo (QQQ sopra/sotto la media a 200 giorni, controllo ogni giorno)
-    - nome: qqq_semaforo
-      modifiche: {universo_attivo: [nasdaq], regime.benchmark: QQQ, ranking.top_n: 1, ranking.rebalance: daily,
-                  ranking.no_filter_classes: [etf, leveraged], ranking.defensive_only_when_red: true, stop.atr_mult: 1000}
-    - nome: tqqq_semaforo
-      modifiche: {universo_attivo: [nasdaq_leva], regime.benchmark: QQQ, ranking.top_n: 1, ranking.rebalance: daily,
-                  ranking.no_filter_classes: [etf, leveraged], ranking.defensive_only_when_red: true, stop.atr_mult: 1000}
-    - nome: tqqq_semaforo_difensivi
+    - nome: tqqq_semaforo_difensivi  # strategia attiva sul Paper
       modifiche: {universo_attivo: [nasdaq_leva, defensive], regime.benchmark: QQQ, ranking.top_n: 1, ranking.rebalance: daily,
                   ranking.no_filter_classes: [etf, leveraged], ranking.defensive_only_when_red: true, stop.atr_mult: 1000}
-    - nome: meta_qqq_meta_tqqq
-      modifiche: {universo_attivo: [nasdaq, nasdaq_leva, defensive], regime.benchmark: QQQ, ranking.top_n: 2, ranking.rebalance: daily,
-                  ranking.no_filter_classes: [etf, leveraged], ranking.defensive_only_when_red: true, stop.atr_mult: 1000}
+    - nome: tech2016_tutte_compra_e_tieni   # paniere: tutte le 28 a peso uguale, nessuna scelta
+      modifiche: {universo_attivo: [tech2016], ranking.top_n: 28, ranking.hold_buffer: 28, regime.enabled: false,
+                  ranking.require_trend: false, ranking.require_positive: false, stop.atr_mult: 1000}
+    # --- singole aziende scelte dal bot (classifica settimanale + semaforo Nasdaq)
+    - nome: tech2016_top5
+      modifiche: {universo_attivo: [tech2016, defensive], ranking.top_n: 5, ranking.hold_buffer: 10, stop.atr_mult: 1000, regime.benchmark: QQQ, ranking.defensive_only_when_red: true}
+    - nome: tech2016_top5_stop
+      modifiche: {universo_attivo: [tech2016, defensive], ranking.top_n: 5, ranking.hold_buffer: 10, stop.atr_mult: 3.0, regime.benchmark: QQQ, ranking.defensive_only_when_red: true}
+    - nome: tech2016_top3
+      modifiche: {universo_attivo: [tech2016, defensive], ranking.top_n: 3, ranking.hold_buffer: 6, stop.atr_mult: 1000, regime.benchmark: QQQ, ranking.defensive_only_when_red: true}
+    - nome: tech2016_top8
+      modifiche: {universo_attivo: [tech2016, defensive], ranking.top_n: 8, ranking.hold_buffer: 16, stop.atr_mult: 1000, regime.benchmark: QQQ, ranking.defensive_only_when_red: true}
