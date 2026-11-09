@@ -1,0 +1,35 @@
+simbolo,classe,ingresso,uscita,prezzo_ingresso,prezzo_uscita,pnl_usd,pnl_pct,motivo_uscita
+NVDA,stocks,2017-10-31,2017-11-30,5.0585,4.9105,-0.21,-2.93,uscito dalla classifica
+NVDA,stocks,2018-01-04,2018-10-25,5.3247,4.8276,-0.55,-9.34,uscito dalla classifica
+NVDA,stocks,2018-10-26,2018-10-29,4.9024,5.0375,0.13,2.75,uscito dalla classifica
+NVDA,stocks,2018-10-31,2018-11-13,5.1826,4.7786,-0.36,-7.79,uscito dalla classifica
+NVDA,stocks,2018-11-16,2018-11-19,4.038,3.996,-0.04,-1.04,uscito dalla classifica
+NVDA,stocks,2020-03-12,2020-03-17,5.6048,4.9895,-0.27,-10.98,uscito dalla classifica
+MU,stocks,2016-10-19,2026-11-06,16.5783,690.0,1450.74,4062.07,fine backtest
+QCOM,stocks,2016-10-19,2026-11-06,49.8949,165.41,82.68,231.52,fine backtest
+AMAT,stocks,2016-10-19,2026-11-06,25.1626,332.715,436.52,1222.26,fine backtest
+EBAY,stocks,2016-10-19,2026-11-06,28.1541,121.96,119.0,333.19,fine backtest
+AMZN,stocks,2016-10-19,2026-11-06,41.0405,259.3,189.93,531.81,fine backtest
+HPE,stocks,2016-10-19,2026-11-06,9.5108,44.77,132.4,370.73,fine backtest
+EA,stocks,2016-10-19,2026-11-06,81.7709,,,,fine backtest
+HPQ,stocks,2016-10-19,2026-11-06,10.105,28.46,64.87,181.64,fine backtest
+AAPL,stocks,2016-10-19,2026-11-06,26.8234,342.37,420.14,1176.39,fine backtest
+INTC,stocks,2016-10-19,2026-11-06,29.2446,56.28,33.02,92.45,fine backtest
+TXN,stocks,2016-10-19,2026-11-06,52.1861,277.36,154.1,431.48,fine backtest
+ADBE,stocks,2016-10-19,2026-11-06,108.8644,239.3,42.79,119.81,fine backtest
+META,stocks,2016-10-19,2026-11-06,127.5838,610.15,135.08,378.23,fine backtest
+NFLX,stocks,2016-10-19,2026-11-06,11.8359,63.41,155.62,435.74,fine backtest
+AVGO,stocks,2016-10-19,2026-11-06,13.3267,293.69,751.35,2103.78,fine backtest
+BKNG,stocks,2016-10-19,2026-11-06,56.9685,160.665,65.01,182.02,fine backtest
+CSCO,stocks,2016-10-19,2026-11-06,22.7314,93.85,111.74,312.87,fine backtest
+GOOGL,stocks,2016-10-19,2026-11-06,40.8604,284.78,213.2,596.96,fine backtest
+ADI,stocks,2016-10-19,2026-11-06,51.4457,363.56,216.67,606.69,fine backtest
+MSFT,stocks,2016-10-19,2026-11-06,51.0555,530.61,335.46,939.28,fine backtest
+IBM,stocks,2016-10-19,2026-11-06,99.7999,245.0,51.96,145.49,fine backtest
+ACN,stocks,2016-10-19,2026-11-06,99.6998,260.5,57.6,161.28,fine backtest
+INTU,stocks,2016-10-19,2026-11-06,99.5097,341.5,86.85,243.18,fine backtest
+PYPL,stocks,2016-10-19,2026-11-06,39.5498,59.24,17.78,49.79,fine backtest
+ORCL,stocks,2016-10-19,2026-11-06,33.1966,116.1,89.19,249.73,fine backtest
+CRM,stocks,2016-10-19,2026-11-06,71.2856,213.65,71.32,199.71,fine backtest
+CTSH,stocks,2016-10-19,2026-11-06,43.932,64.72,16.9,47.32,fine backtest
+NVDA,stocks,2020-03-18,2026-11-06,4.9735,186.64,156.71,3652.7,fine backtest
