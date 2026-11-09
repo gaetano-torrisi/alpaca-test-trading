@@ -6,10 +6,10 @@ from datetime import timedelta
 import pandas as pd
 from alpaca.trading.client import TradingClient
 
-from .common import ET, ROOT, api_keys, load_config
+from .common import ET, ROOT, api_keys, bot_dir, bot_name, load_config
 from .market import TFD, Market, utcnow
 
-LOG, REP = ROOT / "log", ROOT / "report"
+LOG, REP = bot_dir("log"), bot_dir("report")
 
 
 def read(name: str) -> pd.DataFrame:
@@ -42,7 +42,7 @@ def main() -> None:
         spy_txt = "n.d."
 
     day_ops = ops[ops["uscita"].dt.tz_convert(ET).dt.date == today] if len(ops) else ops
-    lines = [f"# Report del {today:%d/%m/%Y}", "",
+    lines = [f"# Report del {today:%d/%m/%Y} – conto {'Test Tech' if bot_name() == 'tech' else 'Test Trading'}", "",
              "| | |", "|---|---|",
              f"| Capitale | {eq:,.2f} $ |",
              f"| Variazione di oggi | {eq - prev:+,.2f} $ ({(eq / prev - 1) * 100:+.2f}%) |",
@@ -70,7 +70,7 @@ def main() -> None:
         if len(e_today):
             lines += ["", f"**Errori oggi: {len(e_today)}** (dettagli in log/errori.csv)"]
 
-    REP.mkdir(exist_ok=True)
+    REP.mkdir(parents=True, exist_ok=True)
     (REP / "giornalieri").mkdir(exist_ok=True)
     text = "\n".join(lines) + "\n"
     (REP / "giornalieri" / f"{today}.md").write_text(text, encoding="utf-8")

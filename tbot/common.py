@@ -13,8 +13,19 @@ ET = ZoneInfo("America/New_York")
 UTC = timezone.utc
 
 
+def bot_name() -> str:
+    """Nome del conto ("" = conto principale "Test Trading", "tech" = conto "Test Tech")."""
+    return os.environ.get("BOT_NAME", "").strip()
+
+
+def bot_dir(base: str) -> Path:
+    """Cartelle separate per conto: log/, state/, report/ (principale) oppure log/tech/ ecc."""
+    return ROOT / base / bot_name() if bot_name() else ROOT / base
+
+
 def load_config(path: str | Path | None = None) -> dict:
-    with open(path or ROOT / "config.yaml", encoding="utf-8") as f:
+    path = path or os.environ.get("BOT_CONFIG") or ROOT / "config.yaml"
+    with open(ROOT / path if not Path(path).is_absolute() else path, encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 

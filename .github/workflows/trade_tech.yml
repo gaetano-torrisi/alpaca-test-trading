@@ -1,0 +1,43 @@
+name: Bot Test Tech (ogni 15 minuti a borsa aperta)
+
+on:
+  schedule:
+    - cron: "*/15 13-21 * * 1-5"   # lun-ven, copre la seduta di Wall Street (15:30-22:00 ora italiana)
+  workflow_dispatch: {}
+
+concurrency:
+  group: bot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  giro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Esegui il bot
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_TECH_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_TECH_SECRET_KEY }}
+          BOT_NAME: tech
+          BOT_CONFIG: config_tech.yaml
+        run: python -m tbot.live
+      - name: Salva registri e stato nel repository
+        if: always()
+        run: |
+          git config user.name "trading-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A log state report 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "bot tech: giro $(date -u +'%Y-%m-%d %H:%M') UTC"
+            git pull --rebase
+            git push
+          fi

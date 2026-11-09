@@ -23,6 +23,15 @@ ma con perdite massime fino al −62% (crollo Covid 2020) e −46% (2022). Strat
 
 Il motore supporta anche la rotazione momentum su più ETF/azioni (vedi varianti in `config.yaml`).
 
+## Secondo conto: "Test Tech" (`config_tech.yaml`)
+
+Stesso semaforo sul Nasdaq, ma invece di TQQQ il bot tiene **le 5 aziende tecnologiche più forti**
+(20% del capitale ciascuna) scelte ogni settimana tra le ~33 maggiori tecnologiche USA del 2026.
+Con semaforo ROSSO passa ai difensivi (TLT, IEF, GLD) o resta in liquidità.
+Backtest 2016–2026 con l'elenco *del 2016*: circa +26% l'anno, perdita massima −32%.
+Registri separati in `log/tech/`, `state/tech/`, `report/tech/`. Chiavi: secrets `ALPACA_TECH_API_KEY` e
+`ALPACA_TECH_SECRET_KEY`. Per fermarlo: *Actions → Bot Test Tech → Disable workflow*.
+
 ## Come funziona
 
 | Quando | Cosa succede |

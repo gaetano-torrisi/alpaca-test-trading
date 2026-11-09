@@ -28,6 +28,13 @@ jobs:
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
         run: python -m tbot.report >> "$GITHUB_STEP_SUMMARY"
+      - name: Genera il report (conto Test Tech)
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_TECH_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_TECH_SECRET_KEY }}
+          BOT_NAME: tech
+          BOT_CONFIG: config_tech.yaml
+        run: python -m tbot.report >> "$GITHUB_STEP_SUMMARY"
       - name: Salva il report
         run: |
           git config user.name "trading-bot"

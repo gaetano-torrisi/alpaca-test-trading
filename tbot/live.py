@@ -18,13 +18,13 @@ from alpaca.trading.client import TradingClient
 from alpaca.trading.enums import AssetClass, OrderSide, QueryOrderStatus, TimeInForce
 from alpaca.trading.requests import GetCalendarRequest, GetOrdersRequest, MarketOrderRequest, StopOrderRequest
 
-from .common import ET, ROOT, api_keys, load_config, stock_session
+from .common import ET, ROOT, api_keys, bot_dir, load_config, stock_session
 from .market import TFD, Market, news_window, utcnow
 from .momentum import (active_symbols, indicators, initial_stop, ranking, symbol_classes, target_portfolio,
                        to_panel, trail_stop)
 
-STATE = ROOT / "state" / "state.json"
-LOG = ROOT / "log"
+STATE = bot_dir("state") / "state.json"
+LOG = bot_dir("log")
 
 
 def load_state() -> dict:
@@ -34,12 +34,12 @@ def load_state() -> dict:
 
 
 def save_state(st: dict) -> None:
-    STATE.parent.mkdir(exist_ok=True)
+    STATE.parent.mkdir(parents=True, exist_ok=True)
     STATE.write_text(json.dumps(st, indent=2, default=str), encoding="utf-8")
 
 
 def append_csv(name: str, header: list[str], row: list) -> None:
-    LOG.mkdir(exist_ok=True)
+    LOG.mkdir(parents=True, exist_ok=True)
     path = LOG / name
     new = not path.exists()
     with open(path, "a", newline="", encoding="utf-8") as f:

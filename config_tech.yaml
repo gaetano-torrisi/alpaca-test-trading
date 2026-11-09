@@ -1,0 +1,56 @@
+# =====================================================================
+#  CONFIGURAZIONE CONTO "Test Tech"  (Alpaca Paper, capitale 1.000 $)
+#  Strategia: le 5 aziende tecnologiche più forti + semaforo Nasdaq.
+#  Backtest 2016-2026 con l'elenco del 2016 (variante "tech2016_top5" in config.yaml):
+#  circa +26% l'anno, perdita massima -32%.
+# =====================================================================
+
+trading_enabled: true
+
+universe:
+  # Maggiori aziende tecnologiche/internet USA per capitalizzazione (classifica al 14/07/2026,
+  # fonte americancompanies.com), stesso criterio usato per l'elenco del 2016.
+  tech2026: [NVDA, AAPL, GOOGL, MSFT, AMZN, AVGO, META, MU, AMD, ORCL, INTC, CSCO, LRCX, AMAT,
+             NFLX, PLTR, IBM, TXN, DELL, KLAC, SNDK, MRVL, QCOM, PANW, ADI, ANET, APP, WDC,
+             CRWD, CRM, UBER, BKNG, NOW]
+  defensive: [TLT, IEF, GLD]   # con semaforo ROSSO
+  etf: [QQQ]
+  stocks: []
+  leveraged: []
+universo_attivo: [tech2026, defensive]
+
+regime:
+  enabled: true
+  benchmark: QQQ
+  sma_days: 200              # VERDE se il Nasdaq 100 (QQQ) chiude sopra la media degli ultimi 200 giorni
+
+ranking:
+  lookbacks: [63, 126]       # forza = media dei rendimenti a 3 e 6 mesi...
+  skip_days: 5               # ...escludendo l'ultima settimana
+  trend_sma: 50              # l'azione deve stare sopra la sua media a 50 giorni
+  require_trend: true
+  require_positive: true
+  min_price: 5
+  top_n: 5                   # le 5 più forti, 20% del capitale ciascuna
+  hold_buffer: 10            # un'azione già in portafoglio resta finché è tra le prime 10
+  rebalance: weekly          # classifica il primo giorno di borsa della settimana
+  no_filter_classes: []
+  defensive_only_when_red: true
+
+stop:
+  atr_days: 20
+  atr_mult: 1000             # nessuno stop stretto (nel backtest peggiorava i risultati)
+
+news:
+  enabled: true
+  lookback_hours: 24
+  block_buy_below: -0.5
+  emergency_sell_below: -0.6
+
+risk:
+  max_drawdown_halt: 0.50    # freno d'emergenza: oltre il peggio visto nel backtest (-32%)
+  halt_reset: false
+  cash_buffer: 0.02
+
+costs:
+  slippage_bps: 5
