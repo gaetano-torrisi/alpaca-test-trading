@@ -118,7 +118,7 @@ def run(cfg: dict, panel: dict, eval_start, initial: float) -> dict:
             if classes.get(s) in ("stocks", "etf", "leveraged") and not green and cfg["regime"].get("enabled", True):
                 pending_sell.add(s)
                 pos[s]["why"] = "semaforo rosso"
-        if is_rebalance_day(day, nxt):
+        if is_rebalance_day(day, nxt, cfg["ranking"].get("rebalance", "weekly")):
             target = target_portfolio(ranked, list(pos), cfg)
             for s in pos:
                 if s not in target:

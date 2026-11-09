@@ -257,6 +257,8 @@ class Bot:
                     to_sell[s] = "semaforo rosso"
         # 3) ribilanciamento settimanale
         week = f"{self.today.isocalendar()[0]}-{self.today.isocalendar()[1]}"
+        if cfg["ranking"].get("rebalance", "weekly") == "daily":
+            week = self.today.isoformat()
         rebalance = self.st.get("last_rebalance_week") != week
         buys: list[str] = []
         if rebalance:

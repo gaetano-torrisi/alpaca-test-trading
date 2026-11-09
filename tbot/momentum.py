@@ -78,6 +78,8 @@ def regime_green(ind: dict, day, cfg: dict) -> bool:
 def eligible(sym: str, day, ind: dict, green: bool, classes: dict, cfg: dict) -> bool:
     rk = cfg["ranking"]
     cls = classes.get(sym, "stocks")
+    if cls == "defensive" and green and rk.get("defensive_only_when_red"):
+        return False
     if cls == "leveraged" and not green:
         return False
     if cls in ("stocks", "etf") and not green:
@@ -91,6 +93,8 @@ def eligible(sym: str, day, ind: dict, green: bool, classes: dict, cfg: dict) ->
         return False
     if pd.isna(close) or close < rk["min_price"] or pd.isna(atr):
         return False
+    if cls in rk.get("no_filter_classes", []):
+        return True
     if rk.get("require_positive", True) and (pd.isna(score) or score <= 0):
         return False
     if rk.get("require_trend", True) and (pd.isna(sma) or close <= sma):
@@ -131,9 +135,11 @@ def trail_stop(prev_stop: float, day, sym: str, ind: dict, cfg: dict) -> float:
     return max(prev_stop, float(c - cfg["stop"]["atr_mult"] * a))
 
 
-def is_rebalance_day(day, next_day) -> bool:
+def is_rebalance_day(day, next_day, freq: str = "weekly") -> bool:
     """Il segnale si calcola alla chiusura dell'ultimo giorno di borsa della settimana
     (l'esecuzione avviene all'apertura del primo giorno della settimana dopo)."""
     if next_day is None:
         return False
+    if freq == "daily":
+        return True
     return pd.Timestamp(day).isocalendar()[1] != pd.Timestamp(next_day).isocalendar()[1]
