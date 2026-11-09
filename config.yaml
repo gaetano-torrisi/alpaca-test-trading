@@ -19,13 +19,13 @@ universe:
            PLTR, COIN, MU, ORCL, CRM, ADBE, UBER, SHOP, MSTR, SMCI,
            ARM, ANET, PANW, CRWD, INTC, QCOM, JPM, GS, XOM, LLY,
            UNH, COST, WMT, BA, CAT, DIS, NKE, HOOD, SOFI, RIVN]
-universo_attivo: [etf, defensive, leveraged]   # quali elenchi usare
+universo_attivo: [nasdaq_leva, defensive]   # strategia scelta: TQQQ con semaforo + difensivi
 
 # --- Semaforo di mercato ---------------------------------------------
 regime:
   enabled: true
-  benchmark: SPY
-  sma_days: 200              # VERDE se SPY chiude sopra la media degli ultimi 200 giorni
+  benchmark: QQQ
+  sma_days: 200              # VERDE se il Nasdaq 100 (QQQ) chiude sopra la media degli ultimi 200 giorni
 
 # --- Classifica (ogni settimana) -------------------------------------
 ranking:
@@ -35,16 +35,16 @@ ranking:
   require_trend: true
   require_positive: true     # e avere forza positiva
   min_price: 5
-  top_n: 4                   # quanti titoli tenere
+  top_n: 1                   # quanti titoli tenere
   hold_buffer: 8             # un titolo già in portafoglio resta finché è nei primi 8
-  rebalance: weekly          # weekly = primo giorno di borsa della settimana, daily = ogni giorno
-  no_filter_classes: []      # classi esentate dai filtri di tendenza/forza (es. [etf, leveraged])
-  defensive_only_when_red: false   # true = i difensivi solo con semaforo ROSSO
+  rebalance: daily           # weekly = primo giorno di borsa della settimana, daily = ogni giorno
+  no_filter_classes: [etf, leveraged]   # classi esentate dai filtri di tendenza/forza (es. [etf, leveraged])
+  defensive_only_when_red: true    # true = i difensivi solo con semaforo ROSSO
 
 # --- Stop che sale ----------------------------------------------------
 stop:
   atr_days: 20
-  atr_mult: 3.0              # stop = massimo chiusura dall'acquisto - 3 ATR (non scende mai)
+  atr_mult: 1000             # stop disattivato: la protezione è il semaforo (stop stretti su TQQQ fanno solo danni)
 
 # --- Notizie (uscita d'emergenza, solo nel bot reale) -----------------
 news:
@@ -55,7 +55,7 @@ news:
 
 # --- Rischio ----------------------------------------------------------
 risk:
-  max_drawdown_halt: 0.35    # -35% dal massimo: chiude tutto e si ferma
+  max_drawdown_halt: 0.70    # solo freno d'emergenza: oltre il peggio visto nel backtest (-62%)
   halt_reset: false          # metti true (e poi di nuovo false) per riattivare dopo un blocco
   cash_buffer: 0.02          # lascia il 2% in liquidità per arrotondamenti
 

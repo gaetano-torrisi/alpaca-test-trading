@@ -7,18 +7,21 @@ Gira da solo su GitHub Actions: nessun computer deve restare acceso.
 
 > Progetto sperimentale e didattico. Non è una consulenza finanziaria.
 
-## La strategia in breve (dettagli e soglie in `config.yaml`)
+## La strategia in uso: Nasdaq ×3 con semaforo (`config.yaml`)
 
-1. **Semaforo**: VERDE se l'S&P 500 (SPY) chiude sopra la media degli ultimi 200 giorni. Con il ROSSO
-   si vendono azioni ed ETF a rischio e si possono tenere solo titoli difensivi (TLT, IEF, GLD).
-2. **Classifica** (primo giorno di borsa di ogni settimana): forza = media dei rendimenti a 3 e 6 mesi,
-   esclusa l'ultima settimana. Si tengono i primi 4; un titolo già in portafoglio resta finché è nei primi 8.
-3. **Stop che sale**: massima chiusura dall'acquisto meno 3 volte l'oscillazione media giornaliera (ATR).
-   Non scende mai. Ogni mattina viene piazzato sul broker come ordine stop.
-4. **Notizie**: non compra titoli con notizie molto negative; vende d'urgenza in caso di raffica di notizie
-   molto negative (solo nel bot reale, non verificabile nel backtest).
-5. **Frazioni di azione**: con 1.000 $ si comprano importi (es. 250 $ di un ETF), non azioni intere.
-6. **Blocco di sicurezza**: a −35% dal massimo chiude tutto e si ferma.
+1. **Semaforo**, controllato ogni giorno: VERDE se il Nasdaq 100 (QQQ) chiude sopra la media degli ultimi
+   200 giorni, ROSSO se chiude sotto.
+2. **VERDE** → tutto il capitale su **TQQQ** (ETF che replica il Nasdaq 100 ×3).
+3. **ROSSO** → vende TQQQ il giorno dopo e passa al titolo difensivo più forte tra TLT, IEF e GLD
+   (se nessuno è in tendenza positiva resta in liquidità).
+4. Niente stop stretti: la protezione è il semaforo. Freno d'emergenza solo a −70% dal massimo.
+5. Notizie: blocco acquisti e uscita d'emergenza in caso di raffica di notizie molto negative (non incluse nel backtest).
+6. Frazioni di azione: si investe un importo in dollari (capitale del test: 1.000 $).
+
+**Backtest 10/2016–11/2026** (`backtest/risultati.md`): circa +34,7% l'anno contro +14,6% dell'S&P 500,
+ma con perdite massime fino al −62% (crollo Covid 2020) e −46% (2022). Strategia volutamente aggressiva.
+
+Il motore supporta anche la rotazione momentum su più ETF/azioni (vedi varianti in `config.yaml`).
 
 ## Come funziona
 

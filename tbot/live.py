@@ -268,7 +268,7 @@ class Bot:
                     to_sell.setdefault(s, "uscito dalla classifica")
             buys = [s for s in target if s not in live]
             self.st["last_rebalance_week"] = week
-            print(f"Ribilanciamento settimanale. Obiettivo: {target or 'tutto in liquidità'}")
+            print(f"Ribilanciamento. Obiettivo: {target or 'tutto in liquidità'}")
         for s, why in to_sell.items():
             self.sell(s, why, orders)
         # 4) acquisti (importo uguale per ogni posto in classifica)
