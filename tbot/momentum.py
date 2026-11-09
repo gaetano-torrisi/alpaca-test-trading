@@ -91,10 +91,12 @@ def eligible(sym: str, day, ind: dict, green: bool, classes: dict, cfg: dict) ->
         atr = ind["atr"].at[day, sym]
     except KeyError:
         return False
-    if pd.isna(close) or close < rk["min_price"] or pd.isna(atr):
+    if pd.isna(close) or pd.isna(atr):
         return False
     if cls in rk.get("no_filter_classes", []):
         return True
+    if close < rk["min_price"]:
+        return False
     if rk.get("require_positive", True) and (pd.isna(score) or score <= 0):
         return False
     if rk.get("require_trend", True) and (pd.isna(sma) or close <= sma):
