@@ -18,7 +18,7 @@ from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
 
-from .common import ET, ROOT, UTC, all_stock_symbols, api_keys, is_crypto, load_config, symbol_class, universe
+from .common import ET, ROOT, UTC, all_stock_symbols, api_keys, is_crypto, is_rth, load_config, symbol_class, universe
 from .indicators import add_daily, add_intraday, last_closed
 from .market import news_window
 from .strategy import evaluate_entry, manage_position, position_size, regime_on
@@ -56,7 +56,9 @@ def fetch_data(cfg: dict, start: datetime, end: datetime) -> dict:
 
 
 # --------------------------------------------------------------- motore
-def run_backtest(cfg: dict, data: dict, start: datetime, end: datetime, initial: float) -> dict:
+def run_backtest(cfg: dict, data: dict, start: datetime, end: datetime, initial: float,
+                 ignore_halt: bool = False) -> dict:
+    """ignore_halt=True: annota quando scatterebbe l'interruttore ma continua (per analisi)."""
     e, x, r, c = cfg["entry"], cfg["exit"], cfg["risk"], cfg["costs"]
     intra, daily = {}, {}
     for s, df in data["intra"].items():
@@ -110,6 +112,7 @@ def run_backtest(cfg: dict, data: dict, start: datetime, end: datetime, initial:
 
     for t in timeline:
         now = t + pd.Timedelta(minutes=15)  # la barra è chiusa
+        stock_open = is_rth(now)  # alle 16:00 ET la borsa è chiusa: nessun ordine a mercato sulle azioni
         for s in list(rows):
             b = rows[s].get(t)
             if b is not None:
@@ -139,6 +142,8 @@ def run_backtest(cfg: dict, data: dict, start: datetime, end: datetime, initial:
                 if b["close"] >= p["target"]:
                     close_pos(s, b["close"] * (1 - slip(s)), now, "take-profit")
                     continue
+            if not is_crypto(s) and not stock_open:
+                continue
             reason, new_stop = manage_position(p, b, last_closed(daily.get(s), now), now.to_pydatetime(), cfg)
             if reason:
                 close_pos(s, b["close"] * (1 - slip(s)), now, reason)
@@ -147,17 +152,20 @@ def run_backtest(cfg: dict, data: dict, start: datetime, end: datetime, initial:
 
         eq = equity()
         peak = max(peak, eq)
-        if not halted and 1 - eq / peak >= r["max_drawdown_halt"]:
-            for s in list(positions):
-                close_pos(s, last_px[s] * (1 - slip(s)), now, "HALT drawdown")
-            halted, halt_time = True, now
-            eq = equity()
+        if halt_time is None and 1 - eq / peak >= r["max_drawdown_halt"]:
+            halt_time = now
+            if not ignore_halt:
+                for s in list(positions):
+                    close_pos(s, last_px[s] * (1 - slip(s)), now, "HALT drawdown")
+                halted = True
+                eq = equity()
         curve.append((now, eq))
 
         # ---- ingressi
         if halted or eq < day_start_eq * (1 - r["daily_loss_limit"]):
             continue
-        cands_syms = [s for s in tradable if t in raw.get(s, ()) and s not in positions]
+        cands_syms = [s for s in tradable if t in raw.get(s, ()) and s not in positions
+                      and (stock_open or is_crypto(s))]
         if not cands_syms:
             continue
         stock_on = regime_on(last_closed(daily.get(bench_s), now))
@@ -279,6 +287,72 @@ def write_report(cfg: dict, res: dict, m: dict, start, end) -> None:
     print("\n".join(lines))
 
 
+def apply_overrides(cfg: dict, overrides: dict) -> dict:
+    import copy
+    out = copy.deepcopy(cfg)
+    for dotted, val in (overrides or {}).items():
+        d = out
+        *path, last = dotted.split(".")
+        for k in path:
+            d = d[k]
+        d[last] = val
+    return out
+
+
+def slice_res(res: dict, a, b) -> dict:
+    a, b = pd.Timestamp(a), pd.Timestamp(b)
+    c = res["curve"][(res["curve"].index >= a) & (res["curve"].index < b)]
+    tr = res["trades"]
+    if len(tr):
+        u = pd.to_datetime(tr["uscita"], utc=True)
+        tr = tr[(u >= a) & (u < b)]
+    bench = res["bench"]
+    if bench is not None:
+        bench = bench[(bench.index >= a) & (bench.index < b)]
+    return {"curve": c, "trades": tr, "initial": c.iloc[0] if len(c) else res["initial"], "bench": bench, "halted": None}
+
+
+def compare(cfg: dict, data: dict, start, end) -> None:
+    variants = cfg["backtest"].get("variants") or [{"nome": "base", "modifiche": {}}]
+    split = pd.Timestamp(cfg["backtest"].get("split_date") or "2026-01-01", tz="UTC")
+    rows, details = [], []
+    for v in variants:
+        vcfg = apply_overrides(cfg, v.get("modifiche"))
+        res = run_backtest(vcfg, data, start, end, cfg["backtest"]["initial_equity"], ignore_halt=True)
+        full, p1, p2 = metrics(res), metrics(slice_res(res, start, split)), metrics(slice_res(res, split, end))
+        rows.append((v["nome"], full, p1, p2, res["halted"]))
+        tr = res["trades"]
+        det = [f"### {v['nome']}", "", f"Modifiche: `{v.get('modifiche') or 'nessuna'}`", ""]
+        if len(tr):
+            det += ["| Classe | Operazioni | P&L ($) | Vincenti (%) |", "|---|---|---|---|"]
+            for cls, g in tr.groupby("classe"):
+                det.append(f"| {cls} | {len(g)} | {g.pnl_usd.sum():,.0f} | {(g.pnl_usd > 0).mean() * 100:.0f} |")
+        details += det + [""]
+        OUT.mkdir(exist_ok=True)
+        tr.to_csv(OUT / f"operazioni_{v['nome']}.csv", index=False)
+
+    def g(m, k):
+        return "–" if k not in m else f"{m[k]:,}"
+    lines = [f"# Confronto varianti  ({start:%d/%m/%Y} – {end:%d/%m/%Y})", "",
+             f"Costi inclusi (slippage e commissioni). Interruttore -{cfg['risk']['max_drawdown_halt']:.0%} "
+             "solo annotato, per vedere l'intero periodo. Periodo A = fino al "
+             f"{split:%d/%m/%Y}, periodo B = dopo (verifica su dati 'nuovi').", "",
+             "| Variante | Rend. totale % | Perdita max % | Sharpe | Operazioni | Vincenti % | Profit factor "
+             "| Rend. A % | Rend. B % | Interruttore scatterebbe |",
+             "|---|---|---|---|---|---|---|---|---|---|"]
+    for name, f, a, b, h in rows:
+        lines.append(f"| {name} | {g(f, 'rendimento_totale_pct')} | {g(f, 'drawdown_massimo_pct')} | {g(f, 'sharpe')} "
+                     f"| {g(f, 'operazioni')} | {g(f, 'percentuale_vincenti')} | {g(f, 'profit_factor')} "
+                     f"| {g(a, 'rendimento_totale_pct')} | {g(b, 'rendimento_totale_pct')} "
+                     f"| {h.strftime('%d/%m/%Y') if h is not None else 'mai'} |")
+    f0 = rows[0][1]
+    lines += ["", f"Confronto: SPY compra-e-tieni {g(f0, 'spy_rendimento_pct')}% "
+              f"(perdita massima {g(f0, 'spy_drawdown_massimo_pct')}%).", "", "## Dettaglio per variante", ""] + details
+    OUT.mkdir(exist_ok=True)
+    (OUT / "risultati.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print("\n".join(lines))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--start")
@@ -291,8 +365,7 @@ def main() -> None:
     end = (datetime.fromisoformat(end_s).replace(tzinfo=UTC) if end_s
            else datetime.now(UTC).replace(hour=0, minute=0, second=0, microsecond=0))
     data = fetch_data(cfg, start, end)
-    res = run_backtest(cfg, data, start, end, bt["initial_equity"])
-    write_report(cfg, res, metrics(res), start, end)
+    compare(cfg, data, start, end)
 
 
 if __name__ == "__main__":

@@ -28,6 +28,12 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Cache dei dati storici (evita di riscaricarli)
+        uses: actions/cache@v4
+        with:
+          path: cache
+          key: dati-${{ inputs.start }}-${{ inputs.end }}-${{ hashFiles('config.yaml') }}
+          restore-keys: dati-${{ inputs.start }}-${{ inputs.end }}-
       - name: Esegui il backtest
         env:
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
