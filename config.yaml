@@ -1,90 +1,81 @@
 # =====================================================================
-#  CONFIGURAZIONE DEL BOT  -  Alpaca Paper "Test Trading"
+#  CONFIGURAZIONE DEL BOT  -  Alpaca Paper "Test Trading"  (capitale 1.000 $)
+#  Strategia: MOMENTUM GIORNALIERO con semaforo di mercato e stop che sale.
 #  Le modifiche settimanali si fanno qui, non nel codice.
 # =====================================================================
 
-# --- Interruttori generali -------------------------------------------
-trading_enabled: true        # false = il bot gira ma non invia ordini (solo log)
-crypto_enabled: true         # false = niente cripto (niente operatività nel weekend)
-dynamic_guests: true         # aggiunge ogni giorno i titoli più attivi del momento
+trading_enabled: true          # false = il bot gira ma non invia ordini (solo log)
 
-# --- Universo dei titoli ---------------------------------------------
+# --- Cosa può comprare -----------------------------------------------
+# "attivi" = elenchi da cui il bot sceglie (vedi "universo_attivo" sotto)
 universe:
-  stocks:        # azioni molto liquide
-    [NVDA, AAPL, MSFT, AMZN, META, GOOGL, TSLA, AMD, AVGO, NFLX,
-     PLTR, COIN, MU, ORCL, CRM, ADBE, UBER, SHOP, MSTR, SMCI,
-     ARM, ANET, PANW, CRWD, INTC, QCOM, JPM, GS, XOM, LLY,
-     UNH, COST, WMT, BA, CAT, DIS, NKE, HOOD, SOFI, RIVN]
-  index_etfs: [SPY, QQQ, IWM, XLK, XLF, XLE, SMH]
-  leveraged_long: [TQQQ, SOXL, UPRO, TNA]     # ETF 3x al rialzo
-  inverse: [SQQQ, SOXS, SPXU, TZA]            # ETF 3x al ribasso (solo con mercato in calo)
-  crypto: [BTC/USD, ETH/USD, SOL/USD]
+  etf: [SPY, QQQ, IWM, DIA, XLK, XLF, XLE, XLV, XLY, XLP, XLI, XLB, XLU,
+        XLRE, XLC, SMH, IBB, XBI, KRE, ITB, GDX, EFA, EEM]
+  defensive: [TLT, IEF, GLD]   # comprabili anche con semaforo ROSSO
+  leveraged: [TQQQ, SOXL, UPRO, TNA]   # ETF 3x: solo con semaforo VERDE
+  stocks: [NVDA, AAPL, MSFT, AMZN, META, GOOGL, TSLA, AMD, AVGO, NFLX,
+           PLTR, COIN, MU, ORCL, CRM, ADBE, UBER, SHOP, MSTR, SMCI,
+           ARM, ANET, PANW, CRWD, INTC, QCOM, JPM, GS, XOM, LLY,
+           UNH, COST, WMT, BA, CAT, DIS, NKE, HOOD, SOFI, RIVN]
+universo_attivo: [etf, defensive, leveraged]   # quali elenchi usare
 
+# --- Semaforo di mercato ---------------------------------------------
 regime:
-  stock_benchmark: SPY       # mercato "risk-on" se SPY chiude sopra la sua media a 50 giorni
-  crypto_benchmark: BTC/USD
-  ema_days: 50
+  enabled: true
+  benchmark: SPY
+  sma_days: 200              # VERDE se SPY chiude sopra la media degli ultimi 200 giorni
 
-# --- Regole di ingresso ----------------------------------------------
-entry:
-  breakout_bars: 20          # rottura del massimo delle ultime N barre da 15 min
-  rsi_min: 50
-  rsi_max: 78
-  volume_ratio_min: 1.2      # volume della barra / media delle ultime 20 barre
-  daily_ema_fast: 20         # tendenza giornaliera: close > EMA20 > EMA50
-  daily_ema_slow: 50
-  news_min_score: -0.25      # salta il titolo se le notizie delle ultime 24h sono negative
-  max_new_per_run: 3
+# --- Classifica (ogni settimana) -------------------------------------
+ranking:
+  lookbacks: [63, 126]       # forza = media dei rendimenti a 3 e 6 mesi...
+  skip_days: 5               # ...escludendo l'ultima settimana
+  trend_sma: 50              # il titolo deve stare sopra la sua media a 50 giorni
+  require_trend: true
+  require_positive: true     # e avere forza positiva
+  min_price: 5
+  top_n: 4                   # quanti titoli tenere
+  hold_buffer: 8             # un titolo già in portafoglio resta finché è nei primi 8
+  rebalance: weekly          # primo giorno di borsa della settimana
 
-# --- Regole di uscita ------------------------------------------------
-exit:
-  atr_period: 14             # ATR sulle barre da 15 min
-  stop_atr: 2.0              # stop-loss = ingresso - 2 ATR
-  target_atr: 4.0            # take-profit = ingresso + 4 ATR
-  breakeven_atr: 1.5         # dopo +1.5 ATR lo stop sale al prezzo di ingresso
-  min_stop_pct: 0.006        # stop almeno allo 0,6% dal prezzo
-  max_stop_pct: 0.06         # e non oltre il 6%
-  max_hold_days: 5           # chiude comunque dopo 5 giorni
-  exit_on_daily_trend_break: true   # chiude se il titolo chiude sotto la EMA20 giornaliera
+# --- Stop che sale ----------------------------------------------------
+stop:
+  atr_days: 20
+  atr_mult: 3.0              # stop = massimo chiusura dall'acquisto - 3 ATR (non scende mai)
 
-# --- Gestione del rischio --------------------------------------------
+# --- Notizie (uscita d'emergenza, solo nel bot reale) -----------------
+news:
+  enabled: true
+  lookback_hours: 24
+  block_buy_below: -0.5      # non compra se le notizie sono molto negative (almeno 2 articoli)
+  emergency_sell_below: -0.6 # vende subito se esce una raffica di notizie molto negative (almeno 3)
+
+# --- Rischio ----------------------------------------------------------
 risk:
-  risk_per_trade: 0.015      # perdita massima per operazione = 1,5% del capitale
-  leveraged_risk_factor: 0.5 # sugli ETF a leva si rischia la metà
-  crypto_risk_factor: 0.7
-  max_position_pct: 0.20     # nessuna posizione oltre il 20% del capitale
-  max_gross_exposure: 1.5    # esposizione totale max 150% del capitale (margine)
-  max_positions: 8
-  max_crypto_positions: 2
-  daily_loss_limit: 0.05     # -5% nel giorno: stop nuovi ingressi fino a domani
-  max_drawdown_halt: 0.20    # -20% dal massimo: chiude tutto e si ferma
-  halt_reset: false          # metti true (e poi di nuovo false) per riattivare dopo un halt
+  max_drawdown_halt: 0.35    # -35% dal massimo: chiude tutto e si ferma
+  halt_reset: false          # metti true (e poi di nuovo false) per riattivare dopo un blocco
+  cash_buffer: 0.02          # lascia il 2% in liquidità per arrotondamenti
 
-# --- Dati e costi ----------------------------------------------------
-data:
-  live_feed: iex             # gratuito, tempo reale
-  backtest_feed: sip         # tutte le borse (storico gratuito)
-  news_lookback_hours: 24
+costs:
+  slippage_bps: 5            # costo stimato per ogni compravendita (backtest)
 
-costs:                       # usati nel backtest per restare realistici
-  stock_slippage_bps: 5
-  crypto_slippage_bps: 15
-  crypto_fee_bps: 25
-
+# --- Backtest ---------------------------------------------------------
 backtest:
-  start: "2024-11-01"
+  start: "2016-01-01"
   end: null                  # null = fino a ieri
-  initial_equity: 100000
-  use_news: true
-  split_date: "2026-01-01"   # periodo A = sviluppo, periodo B = verifica su dati "nuovi"
-  variants:                  # confrontate nello stesso backtest (dati scaricati una volta)
-    - nome: base
-      modifiche: {}
-    - nome: solo_azioni
-      modifiche: {crypto_enabled: false, universe.leveraged_long: [], universe.inverse: []}
-    - nome: solo_azioni_senza_notizie
-      modifiche: {crypto_enabled: false, universe.leveraged_long: [], universe.inverse: [], entry.news_min_score: -1.0}
-    - nome: solo_azioni_stop_larghi
-      modifiche: {crypto_enabled: false, universe.leveraged_long: [], universe.inverse: [], exit.stop_atr: 3.0, exit.target_atr: 6.0}
-    - nome: solo_azioni_lascia_correre
-      modifiche: {crypto_enabled: false, universe.leveraged_long: [], universe.inverse: [], exit.target_atr: 8.0, exit.max_hold_days: 10}
+  initial_equity: 1000
+  split_date: "2022-01-01"   # periodo A = 2016-2021 (scelta), periodo B = 2022-oggi (verifica)
+  variants:
+    - nome: spy_compra_e_tieni
+      modifiche: {universo_attivo: [benchmark_only], ranking.top_n: 1, regime.enabled: false,
+                  ranking.require_trend: false, ranking.require_positive: false, stop.atr_mult: 1000}
+    - nome: spy_con_semaforo
+      modifiche: {universo_attivo: [benchmark_only], ranking.top_n: 1, ranking.require_trend: false,
+                  ranking.require_positive: false, stop.atr_mult: 1000}
+    - nome: etf_rotazione
+      modifiche: {universo_attivo: [etf, defensive]}
+    - nome: etf_aggressiva
+      modifiche: {universo_attivo: [etf, defensive, leveraged]}
+    - nome: etf_aggressiva_top3
+      modifiche: {universo_attivo: [etf, defensive, leveraged], ranking.top_n: 3}
+    - nome: azioni_etf_leva
+      modifiche: {universo_attivo: [stocks, etf, defensive, leveraged], ranking.top_n: 6, ranking.hold_buffer: 12}

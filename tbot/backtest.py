@@ -1,16 +1,15 @@
-"""Backtest: applica le regole della strategia (tbot/strategy.py) ai dati storici.
+"""Backtest della strategia momentum giornaliero (regole in tbot/momentum.py).
 
-Modello di esecuzione, il più vicino possibile al bot reale:
- - decisione alla chiusura di ogni barra da 15 min, esecuzione a quel prezzo + slippage;
- - azioni: stop-loss e take-profit lato broker (bracket) -> verificati sul minimo/massimo
-   della barra; se nella stessa barra si toccano entrambi si assume lo STOP (prudente);
- - cripto: uscite controllate dal bot a fine barra, commissione 0,25% per lato;
- - stessi limiti di rischio, stesso interruttore di sicurezza.
-Non include i "titoli ospiti" (non si possono ricostruire nel passato).
+Modello di esecuzione, uguale al bot reale:
+ - segnali calcolati alla chiusura del giorno D, ordini eseguiti all'apertura del giorno D+1;
+ - stop sul broker durante il giorno: se il minimo tocca lo stop si esce a quel prezzo
+   (o all'apertura, se il titolo apre già sotto);
+ - frazioni di azione ammesse (capitale 1.000 $), costo di 5 punti base per ogni operazione.
 """
 from __future__ import annotations
 
 import argparse
+import copy
 import math
 import pickle
 from datetime import datetime, timedelta
@@ -18,277 +17,28 @@ from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
 
-from .common import ET, ROOT, UTC, all_stock_symbols, api_keys, is_crypto, is_rth, load_config, symbol_class, universe
-from .indicators import add_daily, add_intraday, last_closed
-from .market import news_window
-from .strategy import evaluate_entry, manage_position, position_size, regime_on
+from .common import ROOT, UTC, api_keys, load_config
+from .momentum import (all_symbols, indicators, initial_stop, is_rebalance_day, ranking, symbol_classes,
+                       target_portfolio, to_panel, trail_stop)
 
 OUT = ROOT / "backtest"
 
 
-# ------------------------------------------------------------------ dati
-def fetch_data(cfg: dict, start: datetime, end: datetime) -> dict:
-    from .market import TF15, TFD, Market, cache_path
-    key, secret = api_keys()
-    mk = Market(key, secret)
-    tag = f"{start:%Y%m%d}_{end:%Y%m%d}"
-    cp = cache_path(f"bt_{tag}.pkl")
+def fetch_daily(cfg: dict, start: datetime, end: datetime) -> dict:
+    from .market import TFD, Market, cache_path
+    cp = cache_path(f"daily_{start:%Y%m%d}_{end:%Y%m%d}_{len(all_symbols(cfg))}.pkl")
     if cp.exists():
         return pickle.loads(cp.read_bytes())
-    stocks = list(dict.fromkeys(all_stock_symbols(cfg) + [cfg["regime"]["stock_benchmark"]]))
-    cryptos = universe(cfg)["crypto"]
-    if cryptos:
-        cryptos = list(dict.fromkeys(cryptos + [cfg["regime"]["crypto_benchmark"]]))
-    feed = cfg["data"]["backtest_feed"]
-    print(f"Scarico barre 15 min per {len(stocks)} titoli e {len(cryptos)} cripto...")
-    data = {
-        "intra": {**mk.stock_bars(stocks, TF15, start - timedelta(days=10), end, feed, rth_only=True),
-                  **mk.crypto_bars(cryptos, TF15, start - timedelta(days=10), end)},
-        "daily": {"stock": mk.stock_bars(stocks, TFD, start - timedelta(days=150), end, feed),
-                  "crypto": mk.crypto_bars(cryptos, TFD, start - timedelta(days=150), end)},
-        "news": pd.DataFrame(columns=["time", "symbol", "score", "headline"]),
-    }
-    if cfg["backtest"].get("use_news", True):
-        print("Scarico le notizie storiche (può richiedere alcuni minuti)...")
-        data["news"] = mk.news(stocks + cryptos, start - timedelta(days=1), end)
+    key, secret = api_keys()
+    mk = Market(key, secret)
+    syms = all_symbols(cfg)
+    print(f"Scarico i prezzi giornalieri di {len(syms)} strumenti dal {start:%d/%m/%Y}...")
+    data = mk.stock_bars(syms, TFD, start - timedelta(days=10), end, "sip")
     cp.write_bytes(pickle.dumps(data))
     return data
 
 
-# --------------------------------------------------------------- motore
-def run_backtest(cfg: dict, data: dict, start: datetime, end: datetime, initial: float,
-                 ignore_halt: bool = False) -> dict:
-    """ignore_halt=True: annota quando scatterebbe l'interruttore ma continua (per analisi)."""
-    e, x, r, c = cfg["entry"], cfg["exit"], cfg["risk"], cfg["costs"]
-    intra, daily = {}, {}
-    for s, df in data["intra"].items():
-        intra[s] = add_intraday(df, e["breakout_bars"], x["atr_period"])
-    for kind, group in data["daily"].items():
-        for s, df in group.items():
-            daily[s] = add_daily(df, e["daily_ema_fast"], e["daily_ema_slow"], cfg["regime"]["ema_days"], kind == "crypto")
-    news = data["news"]
-    lookback = cfg["data"]["news_lookback_hours"]
-
-    # pre-filtro vettoriale: solo le barre dove il segnale tecnico è possibile
-    # (la decisione finale la prende comunque strategy.evaluate_entry)
-    rows, raw = {}, {}
-    for s, df in intra.items():
-        df = df[(df.index >= pd.Timestamp(start)) & (df.index < pd.Timestamp(end))]
-        intra[s] = df
-        rows[s] = df.to_dict("index")
-        m = ((df["close"] > df["prior_high"]) & df["rsi"].between(e["rsi_min"], e["rsi_max"])
-             & (df["vol_ratio"] >= e["volume_ratio_min"]))
-        raw[s] = set(df.index[m.fillna(False)])
-
-    timeline = sorted(set().union(*[set(df.index) for df in intra.values()])) if intra else []
-    u = universe(cfg)
-    tradable = [s for s in all_stock_symbols(cfg) + u["crypto"] if s in intra]
-    bench_s, bench_c = cfg["regime"]["stock_benchmark"], cfg["regime"]["crypto_benchmark"]
-
-    cash, positions, trades, curve = initial, {}, [], []
-    last_px: dict[str, float] = {}
-    peak, halted, halt_time = initial, False, None
-    day_key, day_start_eq = None, initial
-
-    def slip(s):
-        return (c["crypto_slippage_bps"] if is_crypto(s) else c["stock_slippage_bps"]) / 1e4
-
-    def fee(s, value):
-        return value * c["crypto_fee_bps"] / 1e4 if is_crypto(s) else 0.0
-
-    def equity():
-        return cash + sum(p["qty"] * last_px.get(s, p["entry"]) for s, p in positions.items())
-
-    def close_pos(s, price, when, reason):
-        nonlocal cash
-        p = positions.pop(s)
-        value = p["qty"] * price
-        cash += value - fee(s, value)
-        pnl = value - fee(s, value) - p["cost"]
-        trades.append({"simbolo": s, "ingresso": p["entry_time"], "uscita": when, "quantita": p["qty"],
-                       "prezzo_ingresso": round(p["entry"], 4), "prezzo_uscita": round(price, 4),
-                       "pnl_usd": round(pnl, 2), "pnl_pct": round(pnl / p["cost"] * 100, 2),
-                       "motivo_uscita": reason, "classe": p["cls"]})
-
-    for t in timeline:
-        now = t + pd.Timedelta(minutes=15)  # la barra è chiusa
-        stock_open = is_rth(now)  # alle 16:00 ET la borsa è chiusa: nessun ordine a mercato sulle azioni
-        for s in list(rows):
-            b = rows[s].get(t)
-            if b is not None:
-                last_px[s] = b["close"]
-
-        dk = now.astimezone(ET).date()
-        if dk != day_key:
-            day_key, day_start_eq = dk, equity()
-
-        # ---- uscite
-        for s in list(positions):
-            b = rows.get(s, {}).get(t)
-            if b is None:
-                continue
-            p = positions[s]
-            if p["bracket"]:
-                if b["low"] <= p["stop"]:
-                    close_pos(s, min(b["open"], p["stop"]) * (1 - slip(s)), now, "stop-loss")
-                    continue
-                if b["high"] >= p["target"]:
-                    close_pos(s, max(b["open"], p["target"]), now, "take-profit")
-                    continue
-            else:
-                if b["close"] <= p["stop"]:
-                    close_pos(s, b["close"] * (1 - slip(s)), now, "stop-loss")
-                    continue
-                if b["close"] >= p["target"]:
-                    close_pos(s, b["close"] * (1 - slip(s)), now, "take-profit")
-                    continue
-            if not is_crypto(s) and not stock_open:
-                continue
-            reason, new_stop = manage_position(p, b, last_closed(daily.get(s), now), now.to_pydatetime(), cfg)
-            if reason:
-                close_pos(s, b["close"] * (1 - slip(s)), now, reason)
-            elif new_stop is not None:
-                p["stop"] = new_stop
-
-        eq = equity()
-        peak = max(peak, eq)
-        if halt_time is None and 1 - eq / peak >= r["max_drawdown_halt"]:
-            halt_time = now
-            if not ignore_halt:
-                for s in list(positions):
-                    close_pos(s, last_px[s] * (1 - slip(s)), now, "HALT drawdown")
-                halted = True
-                eq = equity()
-        curve.append((now, eq))
-
-        # ---- ingressi
-        if halted or eq < day_start_eq * (1 - r["daily_loss_limit"]):
-            continue
-        cands_syms = [s for s in tradable if t in raw.get(s, ()) and s not in positions
-                      and (stock_open or is_crypto(s))]
-        if not cands_syms:
-            continue
-        stock_on = regime_on(last_closed(daily.get(bench_s), now))
-        crypto_on = regime_on(last_closed(daily.get(bench_c), now))
-        cands = []
-        for s in cands_syms:
-            cnd = evaluate_entry(s, symbol_class(s, cfg), rows[s][t], last_closed(daily.get(s), now),
-                                 news_window(news, s, now, lookback), stock_on, crypto_on, cfg)
-            if cnd:
-                cands.append(cnd)
-        cands.sort(key=lambda k: k.score, reverse=True)
-        exposure = sum(p["qty"] * last_px.get(s, p["entry"]) for s, p in positions.items())
-        n_crypto = sum(is_crypto(s) for s in positions)
-        done = 0
-        for cnd in cands:
-            if done >= e["max_new_per_run"] or len(positions) >= r["max_positions"]:
-                break
-            if cnd.cls == "crypto" and n_crypto >= r["max_crypto_positions"]:
-                continue
-            qty = position_size(cnd, eq, exposure, cfg)
-            if qty <= 0:
-                continue
-            fill = cnd.price * (1 + slip(cnd.symbol))
-            value = qty * fill
-            cost = value + fee(cnd.symbol, value)
-            cash -= cost
-            positions[cnd.symbol] = {"entry": fill, "qty": qty, "stop": cnd.stop, "target": cnd.target,
-                                     "atr": cnd.atr, "entry_time": now.to_pydatetime(), "cost": cost,
-                                     "bracket": cnd.cls != "crypto", "cls": cnd.cls}
-            exposure += value
-            n_crypto += cnd.cls == "crypto"
-            done += 1
-
-    end_t = timeline[-1] + pd.Timedelta(minutes=15) if timeline else pd.Timestamp(end)
-    for s in list(positions):
-        close_pos(s, last_px[s], end_t, "fine backtest")
-    if curve:
-        curve[-1] = (curve[-1][0], equity())
-
-    bench = data["daily"]["stock"].get(bench_s)
-    return {"curve": pd.Series(dict(curve)), "trades": pd.DataFrame(trades), "initial": initial,
-            "halted": halt_time, "bench": bench[(bench.index >= pd.Timestamp(start)) & (bench.index < pd.Timestamp(end))] if bench is not None else None}
-
-
-# ---------------------------------------------------------------- metriche
-def metrics(res: dict) -> dict:
-    curve, tr, init = res["curve"], res["trades"], res["initial"]
-    if curve.empty:
-        return {}
-    daily = curve.groupby(curve.index.tz_convert(ET).date).last()
-    rets = daily.pct_change().dropna()
-    years = max((curve.index[-1] - curve.index[0]).days / 365.25, 1e-9)
-    final = curve.iloc[-1]
-    dd = 1 - curve / curve.cummax()
-    m = {
-        "capitale_iniziale": init, "capitale_finale": round(final, 2),
-        "rendimento_totale_pct": round((final / init - 1) * 100, 2),
-        "rendimento_annuo_pct": round(((final / init) ** (1 / years) - 1) * 100, 2),
-        "drawdown_massimo_pct": round(dd.max() * 100, 2),
-        "sharpe": round(rets.mean() / rets.std() * math.sqrt(252), 2) if rets.std() > 0 else 0.0,
-        "operazioni": int(len(tr)),
-    }
-    if len(tr):
-        wins, losses = tr[tr.pnl_usd > 0], tr[tr.pnl_usd <= 0]
-        m.update({
-            "percentuale_vincenti": round(len(wins) / len(tr) * 100, 1),
-            "profit_factor": round(wins.pnl_usd.sum() / -losses.pnl_usd.sum(), 2) if losses.pnl_usd.sum() < 0 else float("inf"),
-            "guadagno_medio_usd": round(wins.pnl_usd.mean(), 2) if len(wins) else 0,
-            "perdita_media_usd": round(losses.pnl_usd.mean(), 2) if len(losses) else 0,
-            "durata_media_ore": round(((pd.to_datetime(tr.uscita, utc=True) - pd.to_datetime(tr.ingresso, utc=True))
-                                      .dt.total_seconds() / 3600).mean(), 1),
-        })
-    b = res.get("bench")
-    if b is not None and len(b) > 1:
-        bret = b["close"].iloc[-1] / b["close"].iloc[0] - 1
-        bdd = (1 - b["close"] / b["close"].cummax()).max()
-        m["spy_rendimento_pct"] = round(bret * 100, 2)
-        m["spy_drawdown_massimo_pct"] = round(bdd * 100, 2)
-    return m
-
-
-def write_report(cfg: dict, res: dict, m: dict, start, end) -> None:
-    OUT.mkdir(exist_ok=True)
-    tr = res["trades"]
-    tr.to_csv(OUT / "operazioni.csv", index=False)
-    curve = res["curve"]
-    daily = curve.groupby(curve.index.tz_convert(ET).date).last()
-    daily.rename("capitale").to_csv(OUT / "capitale_giornaliero.csv", index_label="data")
-    lines = [f"# Risultati backtest  ({start:%d/%m/%Y} – {end:%d/%m/%Y})", "",
-             f"Generato il {datetime.now(UTC).astimezone(ET):%d/%m/%Y %H:%M} ET. "
-             "Costi inclusi: slippage azioni {} bps, cripto {} bps, commissione cripto {} bps.".format(
-                 cfg["costs"]["stock_slippage_bps"], cfg["costs"]["crypto_slippage_bps"], cfg["costs"]["crypto_fee_bps"]),
-             "", "| Metrica | Valore |", "|---|---|"]
-    labels = {"capitale_iniziale": "Capitale iniziale ($)", "capitale_finale": "Capitale finale ($)",
-              "rendimento_totale_pct": "Rendimento totale (%)", "rendimento_annuo_pct": "Rendimento annuo (%)",
-              "drawdown_massimo_pct": "Perdita massima dal picco (%)", "sharpe": "Sharpe ratio",
-              "operazioni": "Operazioni", "percentuale_vincenti": "Operazioni in guadagno (%)",
-              "profit_factor": "Profit factor", "guadagno_medio_usd": "Guadagno medio ($)",
-              "perdita_media_usd": "Perdita media ($)", "durata_media_ore": "Durata media (ore)",
-              "spy_rendimento_pct": "Confronto: SPY compra-e-tieni (%)",
-              "spy_drawdown_massimo_pct": "Confronto: perdita massima SPY (%)"}
-    for k, v in m.items():
-        lines.append(f"| {labels.get(k, k)} | {v:,} |" if isinstance(v, (int, float)) else f"| {labels.get(k, k)} | {v} |")
-    if res.get("halted"):
-        lines += ["", f"**Attenzione:** l'interruttore di sicurezza è scattato il {res['halted']:%d/%m/%Y}."]
-    if len(tr):
-        lines += ["", "## Risultato per tipo di strumento", "", "| Classe | Operazioni | P&L ($) | Vincenti (%) |", "|---|---|---|---|"]
-        for cls, g in tr.groupby("classe"):
-            lines.append(f"| {cls} | {len(g)} | {g.pnl_usd.sum():,.0f} | {(g.pnl_usd > 0).mean() * 100:.0f} |")
-        lines += ["", "## Motivi di uscita", "", "| Motivo | Operazioni | P&L ($) |", "|---|---|---|"]
-        for why, g in tr.groupby("motivo_uscita"):
-            lines.append(f"| {why} | {len(g)} | {g.pnl_usd.sum():,.0f} |")
-        by_sym = tr.groupby("simbolo").pnl_usd.sum().sort_values()
-        lines += ["", "## Titoli migliori e peggiori", "", "| Titolo | P&L ($) |", "|---|---|"]
-        shown = by_sym[::-1] if len(by_sym) <= 10 else pd.concat([by_sym.tail(5)[::-1], by_sym.head(5)])
-        for s, v in shown.items():
-            lines.append(f"| {s} | {v:,.0f} |")
-    (OUT / "risultati.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print("\n".join(lines))
-
-
 def apply_overrides(cfg: dict, overrides: dict) -> dict:
-    import copy
     out = copy.deepcopy(cfg)
     for dotted, val in (overrides or {}).items():
         d = out
@@ -299,58 +49,152 @@ def apply_overrides(cfg: dict, overrides: dict) -> dict:
     return out
 
 
-def slice_res(res: dict, a, b) -> dict:
-    a, b = pd.Timestamp(a), pd.Timestamp(b)
-    c = res["curve"][(res["curve"].index >= a) & (res["curve"].index < b)]
-    tr = res["trades"]
-    if len(tr):
-        u = pd.to_datetime(tr["uscita"], utc=True)
-        tr = tr[(u >= a) & (u < b)]
-    bench = res["bench"]
-    if bench is not None:
-        bench = bench[(bench.index >= a) & (bench.index < b)]
-    return {"curve": c, "trades": tr, "initial": c.iloc[0] if len(c) else res["initial"], "bench": bench, "halted": None}
+def run(cfg: dict, panel: dict, eval_start, initial: float) -> dict:
+    ind = indicators(panel, cfg)
+    classes = symbol_classes(cfg)
+    o, h, lo, c = panel["open"], panel["high"], panel["low"], panel["close"]
+    slip = cfg["costs"]["slippage_bps"] / 1e4
+    buf = cfg["risk"]["cash_buffer"]
+    n = cfg["ranking"]["top_n"]
+    days = [d for d in ind["bench"].dropna().index if d >= eval_start]
+
+    cash, pos, trades, curve = initial, {}, [], []
+    pending_sell: set[str] = set()
+    pending_buy: list[str] = []
+
+    def value(day):
+        return cash + sum(p["qty"] * (c.at[day, s] if not pd.isna(c.at[day, s]) else p["last"]) for s, p in pos.items())
+
+    def sell(s, price, day, reason):
+        nonlocal cash
+        p = pos.pop(s)
+        cash += p["qty"] * price
+        pnl = p["qty"] * (price - p["entry"])
+        trades.append({"simbolo": s, "classe": classes.get(s), "ingresso": p["day"], "uscita": day,
+                       "prezzo_ingresso": round(p["entry"], 4), "prezzo_uscita": round(price, 4),
+                       "pnl_usd": round(pnl, 2), "pnl_pct": round((price / p["entry"] - 1) * 100, 2),
+                       "motivo_uscita": reason})
+
+    for i, day in enumerate(days):
+        # ---- apertura: esegue gli ordini decisi ieri sera
+        for s in sorted(pending_sell):
+            if s in pos and not pd.isna(o.at[day, s]):
+                sell(s, o.at[day, s] * (1 - slip), day, pos[s].get("why", "ribilanciamento"))
+        pending_sell = set()
+        if pending_buy:
+            eq_open = cash + sum(p["qty"] * (o.at[day, s] if not pd.isna(o.at[day, s]) else p["last"]) for s, p in pos.items())
+            slot = eq_open / n
+            for s, stop in pending_buy:
+                px_ = o.at[day, s]
+                if s in pos or pd.isna(px_):
+                    continue
+                notional = min(slot, cash - eq_open * buf)
+                if notional < 1:
+                    continue
+                fill = px_ * (1 + slip)
+                pos[s] = {"qty": notional / fill, "entry": fill, "stop": stop, "day": day, "last": fill}
+                cash -= notional
+        pending_buy = []
+
+        # ---- durante il giorno: stop sul broker
+        for s in list(pos):
+            p = pos[s]
+            if not pd.isna(lo.at[day, s]) and lo.at[day, s] <= p["stop"]:
+                sell(s, min(o.at[day, s], p["stop"]) * (1 - slip), day, "stop")
+
+        # ---- chiusura: aggiorna stop, valuta, decide per domani
+        for s, p in pos.items():
+            if not pd.isna(c.at[day, s]):
+                p["last"] = c.at[day, s]
+            p["stop"] = trail_stop(p["stop"], day, s, ind, cfg)
+        curve.append((day, value(day)))
+
+        nxt = days[i + 1] if i + 1 < len(days) else None
+        if nxt is None:
+            break
+        green, ranked = ranking(day, ind, cfg, classes)
+        # uscite giornaliere: titolo non più idoneo per il semaforo (es. ROSSO -> fuori dalle azioni)
+        for s in pos:
+            if classes.get(s) in ("stocks", "etf", "leveraged") and not green and cfg["regime"].get("enabled", True):
+                pending_sell.add(s)
+                pos[s]["why"] = "semaforo rosso"
+        if is_rebalance_day(day, nxt):
+            target = target_portfolio(ranked, list(pos), cfg)
+            for s in pos:
+                if s not in target:
+                    pending_sell.add(s)
+                    pos[s].setdefault("why", "uscito dalla classifica")
+            pending_buy = [(s, initial_stop(day, s, ind, cfg)) for s in target if s not in pos]
+
+    last = days[-1] if days else None
+    for s in list(pos):
+        sell(s, c.at[last, s], last, "fine backtest")
+    curve_s = pd.Series(dict(curve))
+    return {"curve": curve_s, "trades": pd.DataFrame(trades), "initial": initial}
 
 
-def compare(cfg: dict, data: dict, start, end) -> None:
-    variants = cfg["backtest"].get("variants") or [{"nome": "base", "modifiche": {}}]
-    split = pd.Timestamp(cfg["backtest"].get("split_date") or "2026-01-01", tz="UTC")
-    rows, details = [], []
-    for v in variants:
-        vcfg = apply_overrides(cfg, v.get("modifiche"))
-        res = run_backtest(vcfg, data, start, end, cfg["backtest"]["initial_equity"], ignore_halt=True)
-        full, p1, p2 = metrics(res), metrics(slice_res(res, start, split)), metrics(slice_res(res, split, end))
-        rows.append((v["nome"], full, p1, p2, res["halted"]))
-        tr = res["trades"]
-        det = [f"### {v['nome']}", "", f"Modifiche: `{v.get('modifiche') or 'nessuna'}`", ""]
-        if len(tr):
-            det += ["| Classe | Operazioni | P&L ($) | Vincenti (%) |", "|---|---|---|---|"]
-            for cls, g in tr.groupby("classe"):
-                det.append(f"| {cls} | {len(g)} | {g.pnl_usd.sum():,.0f} | {(g.pnl_usd > 0).mean() * 100:.0f} |")
-        details += det + [""]
-        OUT.mkdir(exist_ok=True)
-        tr.to_csv(OUT / f"operazioni_{v['nome']}.csv", index=False)
+# --------------------------------------------------------------- metriche
+def stats(curve: pd.Series) -> dict:
+    if len(curve) < 2:
+        return {}
+    years = (curve.index[-1] - curve.index[0]).days / 365.25
+    r = curve.pct_change().dropna()
+    dd = 1 - curve / curve.cummax()
+    return {"finale": curve.iloc[-1], "totale": (curve.iloc[-1] / curve.iloc[0] - 1) * 100,
+            "annuo": ((curve.iloc[-1] / curve.iloc[0]) ** (1 / max(years, 1e-9)) - 1) * 100,
+            "dd": dd.max() * 100, "sharpe": r.mean() / r.std() * math.sqrt(252) if r.std() > 0 else 0}
 
-    def g(m, k):
-        return "–" if k not in m else f"{m[k]:,}"
-    lines = [f"# Confronto varianti  ({start:%d/%m/%Y} – {end:%d/%m/%Y})", "",
-             f"Costi inclusi (slippage e commissioni). Interruttore -{cfg['risk']['max_drawdown_halt']:.0%} "
-             "solo annotato, per vedere l'intero periodo. Periodo A = fino al "
-             f"{split:%d/%m/%Y}, periodo B = dopo (verifica su dati 'nuovi').", "",
-             "| Variante | Rend. totale % | Perdita max % | Sharpe | Operazioni | Vincenti % | Profit factor "
-             "| Rend. A % | Rend. B % | Interruttore scatterebbe |",
-             "|---|---|---|---|---|---|---|---|---|---|"]
-    for name, f, a, b, h in rows:
-        lines.append(f"| {name} | {g(f, 'rendimento_totale_pct')} | {g(f, 'drawdown_massimo_pct')} | {g(f, 'sharpe')} "
-                     f"| {g(f, 'operazioni')} | {g(f, 'percentuale_vincenti')} | {g(f, 'profit_factor')} "
-                     f"| {g(a, 'rendimento_totale_pct')} | {g(b, 'rendimento_totale_pct')} "
-                     f"| {h.strftime('%d/%m/%Y') if h is not None else 'mai'} |")
-    f0 = rows[0][1]
-    lines += ["", f"Confronto: SPY compra-e-tieni {g(f0, 'spy_rendimento_pct')}% "
-              f"(perdita massima {g(f0, 'spy_drawdown_massimo_pct')}%).", "", "## Dettaglio per variante", ""] + details
-    OUT.mkdir(exist_ok=True)
-    (OUT / "risultati.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print("\n".join(lines))
+
+def period(curve, a, b):
+    return curve[(curve.index >= pd.Timestamp(a)) & (curve.index < pd.Timestamp(b))]
+
+
+def report(cfg: dict, results: list, eval_start, end) -> str:
+    split = pd.Timestamp(cfg["backtest"]["split_date"])
+    L = [f"# Backtest momentum giornaliero  ({eval_start:%d/%m/%Y} – {end:%d/%m/%Y})", "",
+         f"Capitale iniziale {cfg['backtest']['initial_equity']:,} $. Costi: {cfg['costs']['slippage_bps']} punti base "
+         f"per operazione. Periodo A = fino al {split:%d/%m/%Y} (scelta), periodo B = dopo (verifica).", "",
+         "## Riepilogo", "",
+         "| Variante | Capitale finale $ | Rend. annuo % | Perdita max % | Sharpe | Annuo A % | Annuo B % | Operazioni |",
+         "|---|---|---|---|---|---|---|---|"]
+    for name, res in results:
+        f, a, b = stats(res["curve"]), stats(period(res["curve"], eval_start, split)), stats(period(res["curve"], split, end))
+        L.append(f"| {name} | {f['finale']:,.0f} | {f['annuo']:.1f} | {f['dd']:.1f} | {f['sharpe']:.2f} "
+                 f"| {a.get('annuo', float('nan')):.1f} | {b.get('annuo', float('nan')):.1f} | {len(res['trades'])} |")
+    years = sorted({d.year for d in results[0][1]["curve"].index})
+    L += ["", "## Rendimento anno per anno (%)", "", "| Variante | " + " | ".join(map(str, years)) + " |",
+          "|---|" + "---|" * len(years)]
+    for name, res in results:
+        cv = res["curve"]
+        row = []
+        for y in years:
+            yc = cv[cv.index.year == y]
+            prev = cv[cv.index.year < y]
+            base = prev.iloc[-1] if len(prev) else yc.iloc[0]
+            row.append(f"{(yc.iloc[-1] / base - 1) * 100:+.1f}" if len(yc) else "–")
+        L.append(f"| {name} | " + " | ".join(row) + " |")
+    L += ["", "## Nei momenti difficili (perdita massima nel periodo, %)", "",
+          "| Variante | Crollo Covid (feb–mar 2020) | Anno 2022 | Calo apr 2025 |", "|---|---|---|---|"]
+    for name, res in results:
+        out = []
+        for a, b in (("2020-02-15", "2020-04-30"), ("2022-01-01", "2023-01-01"), ("2025-02-15", "2025-05-15")):
+            p = period(res["curve"], a, b)
+            out.append(f"{(1 - p / p.cummax()).max() * 100:.1f}" if len(p) else "–")
+        L.append(f"| {name} | " + " | ".join(out) + " |")
+    L += ["", "## Dettaglio operazioni per variante", ""]
+    for name, res in results:
+        t = res["trades"]
+        if not len(t):
+            continue
+        win = (t.pnl_usd > 0).mean() * 100
+        hold = (pd.to_datetime(t.uscita) - pd.to_datetime(t.ingresso)).dt.days.mean()
+        L.append(f"**{name}**: {len(t)} operazioni, {win:.0f}% in guadagno, durata media {hold:.0f} giorni. "
+                 f"Uscite: " + ", ".join(f"{k} {v}" for k, v in t.motivo_uscita.value_counts().items()) + ".")
+        best = t.groupby("simbolo").pnl_usd.sum().sort_values(ascending=False)
+        L.append(f"Migliori: {', '.join(f'{s} {v:+,.0f}$' for s, v in best.head(4).items())}. "
+                 f"Peggiori: {', '.join(f'{s} {v:+,.0f}$' for s, v in best.tail(3).items())}.")
+        L.append("")
+    return "\n".join(L) + "\n"
 
 
 def main() -> None:
@@ -364,8 +208,20 @@ def main() -> None:
     end_s = a.end or bt.get("end")
     end = (datetime.fromisoformat(end_s).replace(tzinfo=UTC) if end_s
            else datetime.now(UTC).replace(hour=0, minute=0, second=0, microsecond=0))
-    data = fetch_data(cfg, start, end)
-    compare(cfg, data, start, end)
+    panel = to_panel(fetch_daily(cfg, start, end))
+    base_ind = indicators(panel, cfg)
+    eval_start = base_ind["sma_regime"].dropna().index[0] + pd.Timedelta(days=1)
+    results = []
+    OUT.mkdir(exist_ok=True)
+    for v in bt["variants"]:
+        vcfg = apply_overrides(cfg, v.get("modifiche"))
+        res = run(vcfg, panel, eval_start, bt["initial_equity"])
+        results.append((v["nome"], res))
+        res["trades"].to_csv(OUT / f"operazioni_{v['nome']}.csv", index=False)
+    pd.DataFrame({n: r["curve"] for n, r in results}).round(2).to_csv(OUT / "capitale_varianti.csv", index_label="data")
+    text = report(cfg, results, eval_start, pd.Timestamp(end.date()))
+    (OUT / "risultati.md").write_text(text, encoding="utf-8")
+    print(text)
 
 
 if __name__ == "__main__":

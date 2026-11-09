@@ -41,32 +41,6 @@ def to_pair(symbol: str) -> str:
     return symbol
 
 
-def universe(cfg: dict) -> dict[str, list[str]]:
-    u = cfg["universe"]
-    return {
-        "stocks": list(dict.fromkeys(u["stocks"] + u["index_etfs"])),
-        "leveraged_long": list(u["leveraged_long"]),
-        "inverse": list(u["inverse"]),
-        "crypto": list(u["crypto"]) if cfg.get("crypto_enabled", True) else [],
-    }
-
-
-def all_stock_symbols(cfg: dict) -> list[str]:
-    u = universe(cfg)
-    return list(dict.fromkeys(u["stocks"] + u["leveraged_long"] + u["inverse"]))
-
-
-def symbol_class(symbol: str, cfg: dict) -> str:
-    u = universe(cfg)
-    if is_crypto(symbol):
-        return "crypto"
-    if symbol in u["inverse"]:
-        return "inverse"
-    if symbol in u["leveraged_long"]:
-        return "leveraged_long"
-    return "stock"
-
-
 # ------------------------------------------------------------------ orari
 REGULAR_OPEN, REGULAR_CLOSE = time(9, 30), time(16, 0)
 

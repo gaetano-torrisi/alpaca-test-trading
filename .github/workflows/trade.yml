@@ -1,10 +1,10 @@
-name: Bot trading (ogni 15 minuti)
+name: Bot trading (ogni 15 minuti a borsa aperta)
 
 on:
   # Le esecuzioni automatiche si attivano dopo l'approvazione del backtest:
   # basta togliere il "#" dalle due righe qui sotto.
   # schedule:
-  #   - cron: "*/15 * * * *"
+  #   - cron: "*/15 13-21 * * 1-5"   # lun-ven, copre la seduta di Wall Street (15:30-22:00 ora italiana)
   workflow_dispatch: {}
 
 concurrency:

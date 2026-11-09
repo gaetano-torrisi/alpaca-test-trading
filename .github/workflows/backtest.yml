@@ -5,7 +5,7 @@ on:
     inputs:
       start:
         description: "Data inizio (AAAA-MM-GG)"
-        default: "2024-11-01"
+        default: "2016-01-01"
       end:
         description: "Data fine (vuoto = ieri)"
         default: ""
@@ -20,7 +20,7 @@ permissions:
 jobs:
   backtest:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
