@@ -92,3 +92,7 @@ backtest:
       modifiche: {universo_attivo: [tech2016, defensive], ranking.top_n: 3, ranking.hold_buffer: 6, stop.atr_mult: 1000, regime.benchmark: QQQ, ranking.defensive_only_when_red: true}
     - nome: tech2016_top8
       modifiche: {universo_attivo: [tech2016, defensive], ranking.top_n: 8, ranking.hold_buffer: 16, stop.atr_mult: 1000, regime.benchmark: QQQ, ranking.defensive_only_when_red: true}
+    - nome: tech2016_top5_senza_MU
+      modifiche: {universo_attivo: [tech2016, defensive], universe.tech2016: [AAPL, GOOGL, MSFT, META, AMZN, ORCL, INTC, CSCO, IBM, QCOM, TXN, AVGO, CRM, ADBE, PYPL, NFLX, EBAY, BKNG, CTSH, ACN, INTU, HPQ, HPE, AMAT, EA, NVDA, ADI], ranking.top_n: 5, ranking.hold_buffer: 10, stop.atr_mult: 1000, regime.benchmark: QQQ, ranking.defensive_only_when_red: true}
+    - nome: tech2016_top5_senza_MU_NVDA
+      modifiche: {universo_attivo: [tech2016, defensive], universe.tech2016: [AAPL, GOOGL, MSFT, META, AMZN, ORCL, INTC, CSCO, IBM, QCOM, TXN, AVGO, CRM, ADBE, PYPL, NFLX, EBAY, BKNG, CTSH, ACN, INTU, HPQ, HPE, AMAT, EA, ADI], ranking.top_n: 5, ranking.hold_buffer: 10, stop.atr_mult: 1000, regime.benchmark: QQQ, ranking.defensive_only_when_red: true}
