@@ -1,0 +1,525 @@
+simbolo,classe,ingresso,uscita,prezzo_ingresso,prezzo_uscita,pnl_usd,pnl_pct,motivo_uscita
+INTC,stocks,2016-10-19,2016-10-20,29.2446,28.6757,-3.5,-1.95,uscito dalla classifica
+EBAY,stocks,2016-10-20,2016-10-21,26.023,25.6172,-2.76,-1.56,uscito dalla classifica
+EA,stocks,2016-10-19,2016-10-27,81.7709,80.7796,-2.42,-1.21,uscito dalla classifica
+AMZN,stocks,2016-10-19,2016-10-31,41.0405,39.0305,-9.8,-4.9,uscito dalla classifica
+AAPL,stocks,2016-10-19,2016-11-02,26.8234,25.4273,-10.41,-5.2,uscito dalla classifica
+HPE,stocks,2016-10-31,2016-11-03,9.7919,9.7031,-1.73,-0.91,uscito dalla classifica
+ADBE,stocks,2016-10-21,2016-11-10,108.5643,107.896,-1.07,-0.62,uscito dalla classifica
+AVGO,stocks,2016-11-03,2016-11-11,13.4267,13.0135,-5.82,-3.08,uscito dalla classifica
+MSFT,stocks,2016-11-02,2016-11-15,53.2066,52.1239,-3.86,-2.03,uscito dalla classifica
+HPQ,stocks,2016-11-11,2016-11-25,10.9755,10.5747,-6.72,-3.65,uscito dalla classifica
+QCOM,stocks,2016-10-19,2016-12-02,49.8949,48.7656,-4.53,-2.26,uscito dalla classifica
+HPE,stocks,2016-11-10,2017-01-03,10.2751,10.2249,-0.84,-0.49,uscito dalla classifica
+TXN,stocks,2016-11-15,2017-01-26,53.4667,59.6402,21.45,11.55,uscito dalla classifica
+MSFT,stocks,2017-01-03,2017-02-02,56.1681,56.5117,1.12,0.61,uscito dalla classifica
+ADI,stocks,2016-12-02,2017-04-06,57.4387,67.3163,31.73,17.2,uscito dalla classifica
+AVGO,stocks,2017-02-02,2017-04-13,15.8179,16.4418,7.3,3.94,uscito dalla classifica
+NFLX,stocks,2016-10-27,2017-04-17,12.7564,14.4328,25.92,13.14,uscito dalla classifica
+BKNG,stocks,2017-04-17,2017-05-18,68.1441,70.1049,6.35,2.88,uscito dalla classifica
+HPQ,stocks,2017-04-13,2017-05-26,13.0165,13.2134,2.92,1.51,uscito dalla classifica
+AAPL,stocks,2017-01-26,2017-06-13,27.994,34.0929,44.53,21.79,uscito dalla classifica
+AMAT,stocks,2016-11-25,2017-06-28,28.6043,37.951,57.86,32.68,uscito dalla classifica
+AVGO,stocks,2017-05-26,2017-06-30,18.9495,18.6507,-3.07,-1.58,uscito dalla classifica
+AMZN,stocks,2017-06-28,2017-07-03,48.9545,48.6157,-1.63,-0.69,uscito dalla classifica
+EA,stocks,2017-05-18,2017-07-03,101.6708,103.3083,3.67,1.61,uscito dalla classifica
+ADBE,stocks,2017-04-06,2017-07-05,129.9249,138.5807,14.3,6.66,uscito dalla classifica
+INTU,stocks,2017-07-03,2017-07-05,124.2321,122.3288,-3.59,-1.53,uscito dalla classifica
+META,stocks,2017-07-03,2017-07-05,150.3551,147.5162,-4.36,-1.89,uscito dalla classifica
+ACN,stocks,2017-07-05,2017-07-07,107.0235,106.5267,-1.05,-0.46,uscito dalla classifica
+EBAY,stocks,2017-07-05,2017-07-07,30.6453,29.985,-4.97,-2.15,uscito dalla classifica
+BKNG,stocks,2017-07-07,2017-07-25,73.2566,78.2908,15.22,6.87,uscito dalla classifica
+ORCL,stocks,2017-06-30,2017-08-11,43.6018,41.979,-7.55,-3.72,uscito dalla classifica
+ADBE,stocks,2017-07-07,2017-09-21,141.1405,150.3048,14.86,6.49,uscito dalla classifica
+EA,stocks,2017-07-25,2017-09-26,110.6553,111.0644,0.87,0.37,uscito dalla classifica
+META,stocks,2017-08-11,2017-09-26,166.4432,162.8585,-4.22,-2.15,uscito dalla classifica
+NFLX,stocks,2017-09-21,2017-10-03,18.5893,17.7611,-10.8,-4.46,uscito dalla classifica
+ACN,stocks,2017-09-26,2017-10-10,119.5397,118.1309,-2.15,-1.18,uscito dalla classifica
+EA,stocks,2017-10-03,2017-10-11,114.4972,113.8031,-1.4,-0.61,uscito dalla classifica
+META,stocks,2017-10-11,2017-10-23,170.4052,173.4532,4.11,1.79,uscito dalla classifica
+CTSH,stocks,2017-07-05,2017-11-03,58.3392,64.9775,26.23,11.38,uscito dalla classifica
+NFLX,stocks,2017-10-10,2017-11-29,19.7999,19.8801,0.73,0.4,uscito dalla classifica
+AMAT,stocks,2017-09-26,2017-11-30,42.3111,48.8456,37.92,15.44,uscito dalla classifica
+NVDA,stocks,2017-11-03,2017-11-30,5.1096,4.9105,-9.99,-3.89,uscito dalla classifica
+ADBE,stocks,2017-11-30,2017-12-05,178.2291,167.6062,-15.61,-5.96,uscito dalla classifica
+PYPL,stocks,2017-06-13,2018-01-02,51.7359,73.3833,99.81,41.84,uscito dalla classifica
+INTC,stocks,2017-11-29,2018-01-05,37.6688,37.2813,-1.85,-1.03,uscito dalla classifica
+ACN,stocks,2018-01-02,2018-02-01,133.7668,139.4302,11.21,4.23,uscito dalla classifica
+PYPL,stocks,2018-01-05,2018-02-05,76.2981,75.0724,-4.04,-1.61,uscito dalla classifica
+QCOM,stocks,2017-11-30,2018-02-05,52.7564,52.5337,-1.11,-0.42,uscito dalla classifica
+CSCO,stocks,2018-02-05,2018-02-06,31.8459,29.8351,-14.65,-6.31,uscito dalla classifica
+TXN,stocks,2017-10-23,2018-02-06,74.6273,80.6497,18.8,8.07,uscito dalla classifica
+HPE,stocks,2018-02-06,2018-02-09,11.7859,11.7241,-1.37,-0.52,uscito dalla classifica
+EBAY,stocks,2018-02-09,2018-03-08,36.6183,38.9205,16.28,6.29,uscito dalla classifica
+NVDA,stocks,2018-02-05,2018-03-26,5.6018,5.8711,13.3,4.81,uscito dalla classifica
+AMZN,stocks,2017-12-05,2018-03-29,56.4382,70.2648,62.06,24.5,uscito dalla classifica
+HPE,stocks,2018-03-08,2018-04-03,14.8274,13.3533,-27.03,-9.94,uscito dalla classifica
+NFLX,stocks,2018-02-01,2018-04-03,26.6533,28.5357,19.39,7.06,uscito dalla classifica
+CRM,stocks,2018-04-04,2018-04-09,111.976,114.8925,7.24,2.6,uscito dalla classifica
+INTU,stocks,2018-04-03,2018-04-09,159.7498,158.0909,-2.92,-1.04,uscito dalla classifica
+BKNG,stocks,2018-03-29,2018-04-18,80.5202,84.8076,15.1,5.32,uscito dalla classifica
+AMZN,stocks,2018-04-18,2018-04-25,75.7679,72.8636,-11.5,-3.83,uscito dalla classifica
+CRM,stocks,2018-04-10,2018-04-25,116.7483,115.7321,-2.49,-0.87,uscito dalla classifica
+CSCO,stocks,2018-04-25,2018-05-18,34.4072,34.1029,-2.54,-0.88,uscito dalla classifica
+INTC,stocks,2018-03-26,2018-06-19,42.9114,44.2978,9.4,3.23,uscito dalla classifica
+NVDA,stocks,2018-06-19,2018-06-26,6.4472,6.015,-19.97,-6.7,uscito dalla classifica
+ADBE,stocks,2018-02-06,2018-06-28,186.6833,236.4717,55.83,26.67,uscito dalla classifica
+NFLX,stocks,2018-04-11,2018-07-20,30.3051,36.4718,58.28,20.35,uscito dalla classifica
+EA,stocks,2018-06-28,2018-07-30,134.167,129.4452,-9.34,-3.52,uscito dalla classifica
+ADBE,stocks,2018-07-20,2018-07-31,258.2991,244.8075,-17.14,-5.22,uscito dalla classifica
+INTU,stocks,2018-04-25,2018-07-31,167.0635,191.6341,42.19,14.71,uscito dalla classifica
+CRM,stocks,2018-06-26,2018-08-01,132.3061,135.3423,6.4,2.29,uscito dalla classifica
+GOOGL,stocks,2018-07-31,2018-09-05,61.0305,59.8601,-5.94,-1.92,uscito dalla classifica
+AMZN,stocks,2018-05-18,2018-10-05,79.1095,95.852,59.98,21.16,uscito dalla classifica
+CRM,stocks,2018-09-05,2018-10-09,149.5848,145.4672,-8.29,-2.75,uscito dalla classifica
+AAPL,stocks,2018-07-30,2018-10-11,45.2026,50.6547,32.83,12.06,uscito dalla classifica
+CSCO,stocks,2018-10-09,2018-10-11,37.8789,36.1919,-13.34,-4.45,uscito dalla classifica
+INTU,stocks,2018-10-05,2018-10-11,211.4056,192.4637,-30.25,-8.96,uscito dalla classifica
+MSFT,stocks,2018-07-31,2018-10-11,98.2591,97.4812,-2.45,-0.79,uscito dalla classifica
+QCOM,stocks,2018-08-01,2018-10-11,51.8159,54.5327,16.07,5.24,uscito dalla classifica
+AVGO,stocks,2018-10-11,2018-10-12,18.9195,19.1304,3.48,1.12,semaforo rosso
+AAPL,stocks,2018-10-15,2018-10-16,52.2761,51.6941,-3.48,-1.11,uscito dalla classifica
+ADBE,stocks,2018-10-17,2018-10-18,261.3406,256.0619,-6.35,-2.02,uscito dalla classifica
+MSFT,stocks,2018-10-17,2018-10-18,103.4417,101.869,-4.78,-1.52,uscito dalla classifica
+AAPL,stocks,2018-10-17,2018-10-19,52.5463,51.4842,-6.36,-2.02,uscito dalla classifica
+AVGO,stocks,2018-10-15,2018-10-19,18.8494,18.7406,-1.81,-0.58,uscito dalla classifica
+INTU,stocks,2018-10-18,2018-10-19,204.7123,202.1789,-3.84,-1.24,uscito dalla classifica
+AAPL,stocks,2018-10-23,2018-10-25,50.9955,51.4043,2.47,0.8,semaforo rosso
+AAPL,stocks,2018-11-02,2018-11-05,49.5248,48.2259,-8.08,-2.62,semaforo rosso
+CSCO,stocks,2018-11-08,2018-11-12,38.1491,37.5312,-4.47,-1.62,semaforo rosso
+HPQ,stocks,2018-11-08,2018-11-12,19.1096,18.6207,-7.84,-2.56,semaforo rosso
+INTU,stocks,2018-11-08,2018-11-12,207.7938,208.3058,0.76,0.25,semaforo rosso
+MSFT,stocks,2018-11-08,2018-11-12,103.5518,101.2494,-6.81,-2.22,semaforo rosso
+ORCL,stocks,2018-11-08,2018-11-12,44.6823,44.5877,-0.65,-0.21,semaforo rosso
+IEF,defensive,2018-12-03,2018-12-04,83.3617,83.7181,1.29,0.43,uscito dalla classifica
+AVGO,stocks,2018-12-04,2018-12-06,19.6198,18.4408,-18.21,-6.01,semaforo rosso
+CSCO,stocks,2018-12-04,2018-12-06,38.7994,37.4113,-10.84,-3.58,semaforo rosso
+MSFT,stocks,2018-12-04,2018-12-06,104.132,98.3408,-16.85,-5.56,semaforo rosso
+ORCL,stocks,2018-12-04,2018-12-06,44.092,42.4388,-11.36,-3.75,semaforo rosso
+IEF,defensive,2018-12-06,2018-12-07,84.3622,84.1479,-0.74,-0.25,uscito dalla classifica
+GLD,defensive,2018-12-17,2019-02-06,117.4287,124.0979,16.54,5.68,uscito dalla classifica
+IEF,defensive,2018-12-10,2019-02-06,84.5122,85.967,5.02,1.72,uscito dalla classifica
+TLT,defensive,2018-12-17,2019-02-06,93.7669,96.3118,7.9,2.71,uscito dalla classifica
+ADI,stocks,2019-02-06,2019-02-07,88.1541,88.3058,0.51,0.17,semaforo rosso
+AVGO,stocks,2019-02-06,2019-02-07,22.5313,22.4688,-0.82,-0.28,semaforo rosso
+CSCO,stocks,2019-02-06,2019-02-07,37.8389,37.8611,0.16,0.06,semaforo rosso
+EBAY,stocks,2019-02-06,2019-02-07,30.9855,31.0445,0.57,0.19,semaforo rosso
+PYPL,stocks,2019-02-06,2019-02-07,89.8449,90.0649,0.73,0.24,semaforo rosso
+GLD,defensive,2019-02-07,2019-02-15,123.8619,124.5277,1.6,0.54,uscito dalla classifica
+IEF,defensive,2019-02-07,2019-02-15,86.1731,86.027,-0.5,-0.17,uscito dalla classifica
+TLT,defensive,2019-02-07,2019-02-15,96.4782,96.4617,-0.05,-0.02,uscito dalla classifica
+ADI,stocks,2019-02-15,2019-03-08,91.9259,91.7641,-0.52,-0.18,semaforo rosso
+AVGO,stocks,2019-02-15,2019-03-08,23.4217,21.5392,-23.93,-8.04,semaforo rosso
+CRM,stocks,2019-02-15,2019-03-08,158.049,149.0954,-16.86,-5.67,semaforo rosso
+EBAY,stocks,2019-02-15,2019-03-08,32.3061,31.8641,-4.07,-1.37,semaforo rosso
+NFLX,stocks,2019-02-15,2019-03-08,35.8679,34.5627,-9.75,-3.64,semaforo rosso
+IEF,defensive,2019-03-08,2019-03-12,86.5633,86.5167,-0.15,-0.05,uscito dalla classifica
+TLT,defensive,2019-03-08,2019-03-12,96.4182,96.4617,0.13,0.05,uscito dalla classifica
+AVGO,stocks,2019-03-12,2019-03-22,22.2411,24.5877,30.24,10.55,uscito dalla classifica
+EBAY,stocks,2019-03-12,2019-04-12,32.2761,32.3738,0.87,0.3,uscito dalla classifica
+INTC,stocks,2019-03-12,2019-04-29,46.2231,45.1574,-5.95,-2.31,uscito dalla classifica
+INTU,stocks,2019-03-12,2019-04-29,235.6778,238.7106,3.69,1.29,uscito dalla classifica
+CSCO,stocks,2019-03-22,2019-05-08,43.2916,42.9285,-2.5,-0.84,uscito dalla classifica
+ADI,stocks,2019-03-12,2019-05-10,94.4072,96.5417,6.48,2.26,uscito dalla classifica
+AMAT,stocks,2019-04-29,2019-05-10,41.4407,37.921,-20.91,-8.49,uscito dalla classifica
+AVGO,stocks,2019-04-12,2019-05-14,25.8929,24.5677,-15.54,-5.12,uscito dalla classifica
+QCOM,stocks,2019-04-29,2019-05-23,72.6963,56.3318,-67.12,-22.51,uscito dalla classifica
+AMZN,stocks,2019-05-14,2019-05-24,92.026,91.7441,-0.86,-0.31,uscito dalla classifica
+ADBE,stocks,2019-05-23,2019-06-03,278.4291,270.3747,-6.9,-2.89,uscito dalla classifica
+META,stocks,2019-05-10,2019-06-03,186.5532,173.2533,-20.36,-7.13,uscito dalla classifica
+ACN,stocks,2019-05-24,2019-06-04,160.6203,158.4108,-3.74,-1.38,semaforo rosso
+MSFT,stocks,2019-05-10,2019-06-04,116.6883,113.6032,-6.35,-2.64,semaforo rosso
+PYPL,stocks,2019-05-08,2019-06-04,107.4337,105.5972,-4.94,-1.71,semaforo rosso
+GLD,defensive,2019-06-04,2019-06-05,124.9424,126.1169,2.48,0.94,uscito dalla classifica
+IEF,defensive,2019-06-04,2019-06-05,90.4652,90.5447,0.23,0.09,uscito dalla classifica
+TLT,defensive,2019-06-04,2019-06-05,105.2526,104.4577,-1.99,-0.76,uscito dalla classifica
+CRM,stocks,2019-06-06,2019-06-11,155.6078,152.3238,-4.99,-2.11,uscito dalla classifica
+CSCO,stocks,2019-06-06,2019-06-17,44.3622,44.3978,0.21,0.08,uscito dalla classifica
+INTU,stocks,2019-06-17,2019-06-27,240.14,243.3283,3.52,1.33,uscito dalla classifica
+EBAY,stocks,2019-06-11,2019-07-24,34.1471,36.3018,14.54,6.31,uscito dalla classifica
+PYPL,stocks,2019-06-05,2019-07-26,108.8844,114.3628,13.28,5.03,uscito dalla classifica
+META,stocks,2019-06-27,2019-08-05,188.174,182.8485,-7.6,-2.83,uscito dalla classifica
+ACN,stocks,2019-06-05,2019-08-06,160.5002,166.8166,10.39,3.94,uscito dalla classifica
+INTU,stocks,2019-07-26,2019-08-06,267.2035,252.3438,-15.42,-5.56,uscito dalla classifica
+MSFT,stocks,2019-06-06,2019-08-06,118.5592,125.3273,15.11,5.71,uscito dalla classifica
+IBM,stocks,2019-08-06,2019-08-08,105.0925,103.5282,-3.94,-1.49,uscito dalla classifica
+GOOGL,stocks,2019-08-06,2019-08-09,57.7589,59.4003,7.53,2.84,uscito dalla classifica
+ACN,stocks,2019-08-09,2019-08-15,173.1865,167.4262,-9.05,-3.33,uscito dalla classifica
+INTU,stocks,2019-08-08,2019-08-15,256.4982,255.0524,-1.51,-0.56,uscito dalla classifica
+MSFT,stocks,2019-08-07,2019-08-15,125.4427,126.3068,1.81,0.69,uscito dalla classifica
+AAPL,stocks,2019-08-15,2019-08-26,48.8344,49.3653,2.89,1.09,uscito dalla classifica
+AMAT,stocks,2019-07-24,2019-08-26,47.6538,43.1384,-23.09,-9.48,uscito dalla classifica
+GOOGL,stocks,2019-08-15,2019-08-30,57.8989,59.4203,6.98,2.63,uscito dalla classifica
+INTU,stocks,2019-08-26,2019-09-10,265.1525,259.0204,-5.5,-2.31,uscito dalla classifica
+ACN,stocks,2019-08-26,2019-09-11,173.8469,169.7951,-6.19,-2.33,uscito dalla classifica
+BKNG,stocks,2019-08-16,2019-09-30,75.4077,76.2718,3.04,1.15,uscito dalla classifica
+MSFT,stocks,2019-09-30,2019-10-02,129.8749,128.0559,-3.76,-1.4,uscito dalla classifica
+BKNG,stocks,2019-10-02,2019-10-03,76.9785,75.6322,-4.64,-1.75,uscito dalla classifica
+QCOM,stocks,2019-08-30,2019-10-03,65.5327,63.2084,-9.65,-3.55,uscito dalla classifica
+IBM,stocks,2019-10-03,2019-10-09,106.023,104.5277,-3.72,-1.41,uscito dalla classifica
+QCOM,stocks,2019-10-04,2019-10-09,65.3126,63.1884,-8.44,-3.25,uscito dalla classifica
+TXN,stocks,2019-08-05,2019-10-09,97.6488,103.7081,16.3,6.21,uscito dalla classifica
+IBM,stocks,2019-10-10,2019-10-16,104.4822,106.5367,5.14,1.97,uscito dalla classifica
+MSFT,stocks,2019-10-10,2019-10-21,130.2851,130.1149,-0.35,-0.13,uscito dalla classifica
+ORCL,stocks,2019-10-21,2019-10-24,49.8249,49.2354,-3.12,-1.18,uscito dalla classifica
+TXN,stocks,2019-10-10,2019-10-24,104.7223,97.2114,-18.96,-7.17,uscito dalla classifica
+GOOGL,stocks,2019-10-24,2019-10-25,62.3912,61.979,-1.58,-0.66,uscito dalla classifica
+EA,stocks,2019-10-24,2019-10-30,93.3667,91.4243,-5.56,-2.08,uscito dalla classifica
+NVDA,stocks,2019-10-30,2019-11-01,5.0645,4.9505,-5.89,-2.25,uscito dalla classifica
+BKNG,stocks,2019-10-16,2019-11-08,78.8394,75.8021,-10.25,-3.85,uscito dalla classifica
+HPE,stocks,2019-11-01,2019-12-03,12.9865,12.5437,-8.72,-3.41,uscito dalla classifica
+INTC,stocks,2019-12-03,2020-01-23,50.1851,55.4223,25.83,10.44,uscito dalla classifica
+AMAT,stocks,2019-09-10,2020-01-28,47.2936,56.2419,44.0,18.92,uscito dalla classifica
+EA,stocks,2020-01-28,2020-02-04,108.054,103.2484,-12.34,-4.45,uscito dalla classifica
+AAPL,stocks,2019-09-11,2020-02-25,52.3462,72.5537,100.03,38.6,uscito dalla classifica
+INTC,stocks,2020-02-04,2020-02-25,58.049,54.9225,-14.25,-5.39,uscito dalla classifica
+ADBE,stocks,2020-02-25,2020-02-28,361.1805,323.848,-32.16,-10.34,uscito dalla classifica
+CRM,stocks,2020-01-23,2020-02-28,179.6198,161.819,-26.63,-9.91,uscito dalla classifica
+MSFT,stocks,2019-10-25,2020-02-28,131.0855,144.1179,23.62,9.94,uscito dalla classifica
+HPQ,stocks,2020-02-28,2020-03-02,16.4382,16.3618,-1.3,-0.46,uscito dalla classifica
+ADBE,stocks,2020-03-03,2020-03-04,361.9409,354.2028,-6.24,-2.14,uscito dalla classifica
+HPQ,stocks,2020-03-03,2020-03-04,17.0885,16.4518,-7.41,-3.73,uscito dalla classifica
+MSFT,stocks,2020-03-03,2020-03-04,164.5122,159.3203,-9.22,-3.16,uscito dalla classifica
+ADBE,stocks,2020-03-05,2020-03-06,355.2375,340.2798,-12.08,-4.21,uscito dalla classifica
+HPQ,stocks,2020-03-05,2020-03-06,16.5183,16.3518,-2.89,-1.01,uscito dalla classifica
+MSFT,stocks,2020-03-05,2020-03-06,157.1685,153.7631,-4.04,-2.17,uscito dalla classifica
+EA,stocks,2020-03-06,2020-03-09,103.3617,98.5207,-13.04,-4.68,uscito dalla classifica
+INTU,stocks,2020-03-06,2020-03-09,262.8414,245.2973,-18.59,-6.67,uscito dalla classifica
+NFLX,stocks,2020-02-25,2020-03-10,37.2186,35.6222,-12.79,-4.29,semaforo rosso
+NVDA,stocks,2019-11-08,2020-03-10,5.1556,6.3708,60.2,23.57,semaforo rosso
+GLD,defensive,2020-03-10,2020-03-11,156.2581,156.1719,-0.15,-0.06,uscito dalla classifica
+IEF,defensive,2020-03-10,2020-03-11,101.9209,101.3093,-1.61,-0.6,uscito dalla classifica
+TLT,defensive,2020-03-10,2020-03-11,138.039,134.4827,-6.9,-2.58,uscito dalla classifica
+NFLX,stocks,2020-03-11,2020-03-12,35.9079,32.6337,-24.27,-9.12,semaforo rosso
+NVDA,stocks,2020-03-11,2020-03-12,6.3502,5.5992,-31.48,-11.83,semaforo rosso
+GLD,defensive,2020-03-12,2020-03-16,151.6058,137.4912,-23.74,-9.31,uscito dalla classifica
+TLT,defensive,2020-03-12,2020-03-19,133.0565,119.4602,-26.06,-10.22,uscito dalla classifica
+GLD,defensive,2020-03-25,2020-03-26,152.6563,153.234,0.94,0.38,uscito dalla classifica
+GLD,defensive,2020-03-31,2020-04-01,151.4357,148.1259,-5.46,-2.19,uscito dalla classifica
+GLD,defensive,2020-04-03,2020-04-09,152.3061,158.001,9.34,3.74,uscito dalla classifica
+IEF,defensive,2020-03-12,2020-04-09,101.3106,101.7391,1.08,0.42,uscito dalla classifica
+TLT,defensive,2020-03-20,2020-04-09,124.7423,133.7431,17.6,7.22,uscito dalla classifica
+EA,stocks,2020-04-13,2020-06-11,102.5813,120.9195,40.24,17.88,uscito dalla classifica
+NFLX,stocks,2020-04-09,2020-06-15,37.1286,42.1189,33.57,13.44,uscito dalla classifica
+MSFT,stocks,2020-04-09,2020-08-04,157.4687,203.0784,72.35,28.96,uscito dalla classifica
+NFLX,stocks,2020-08-04,2020-08-12,49.8849,47.1064,-17.58,-5.57,uscito dalla classifica
+EBAY,stocks,2020-06-15,2020-08-31,42.3912,48.8556,43.36,15.25,uscito dalla classifica
+AMZN,stocks,2020-04-09,2020-09-09,102.2711,160.0699,141.16,56.52,uscito dalla classifica
+PYPL,stocks,2020-06-11,2020-09-09,156.6683,188.7956,53.23,20.51,uscito dalla classifica
+META,stocks,2020-09-09,2020-09-18,273.2866,255.822,-21.76,-6.39,uscito dalla classifica
+AAPL,stocks,2020-08-12,2020-09-21,107.1435,101.2593,-16.41,-5.49,uscito dalla classifica
+CRM,stocks,2020-09-09,2020-10-27,241.9009,242.0589,0.24,0.07,uscito dalla classifica
+AVGO,stocks,2020-09-18,2020-10-29,32.2861,30.7946,-14.76,-4.62,uscito dalla classifica
+NVDA,stocks,2020-04-09,2020-10-29,6.7614,12.7636,221.73,88.77,uscito dalla classifica
+PYPL,stocks,2020-10-27,2020-10-29,196.6983,191.844,-8.95,-2.47,uscito dalla classifica
+META,stocks,2020-10-30,2020-11-02,272.0359,261.959,-13.35,-3.7,uscito dalla classifica
+ADI,stocks,2020-10-30,2020-11-06,106.133,118.3808,41.6,11.54,uscito dalla classifica
+GOOGL,stocks,2020-11-02,2020-11-06,80.4502,86.6966,28.07,7.76,uscito dalla classifica
+NVDA,stocks,2020-11-06,2020-11-11,14.037,12.9735,-29.76,-7.58,uscito dalla classifica
+HPQ,stocks,2020-11-11,2020-11-12,16.058,15.4723,-14.06,-3.65,uscito dalla classifica
+NVDA,stocks,2020-11-12,2020-11-23,13.4167,13.0934,-9.34,-2.41,uscito dalla classifica
+AAPL,stocks,2020-11-06,2020-11-24,114.9274,110.5247,-15.05,-3.83,uscito dalla classifica
+CRM,stocks,2020-11-23,2020-11-27,256.4682,246.1769,-15.21,-4.01,uscito dalla classifica
+TXN,stocks,2020-10-30,2020-12-28,123.1716,138.9805,46.27,12.83,uscito dalla classifica
+CTSH,stocks,2020-09-21,2021-01-21,61.5408,74.5027,59.82,21.06,uscito dalla classifica
+QCOM,stocks,2020-08-31,2021-02-05,103.6618,131.5242,87.09,26.88,uscito dalla classifica
+ADI,stocks,2021-01-21,2021-02-12,145.9429,144.3278,-3.79,-1.11,uscito dalla classifica
+AVGO,stocks,2020-11-24,2021-03-05,34.4972,40.6197,67.04,17.75,uscito dalla classifica
+PYPL,stocks,2021-02-12,2021-03-05,289.5547,240.3198,-57.14,-17.0,uscito dalla classifica
+INTC,stocks,2021-03-05,2021-04-20,53.927,57.8511,31.76,7.28,uscito dalla classifica
+BKNG,stocks,2021-04-20,2021-05-06,95.1476,89.7351,-26.29,-5.69,uscito dalla classifica
+AMAT,stocks,2020-11-27,2021-05-11,78.109,114.6726,170.3,46.81,uscito dalla classifica
+HPE,stocks,2021-02-05,2021-05-13,11.0755,13.4833,89.64,21.74,uscito dalla classifica
+HPQ,stocks,2020-12-28,2021-05-13,19.7699,26.1469,129.84,32.26,uscito dalla classifica
+ACN,stocks,2021-05-13,2021-05-28,258.2791,259.3303,1.92,0.41,uscito dalla classifica
+CSCO,stocks,2021-05-06,2021-06-08,43.952,46.3968,24.26,5.56,uscito dalla classifica
+ORCL,stocks,2021-05-11,2021-06-17,74.027,71.3943,-17.34,-3.56,uscito dalla classifica
+AMAT,stocks,2021-05-28,2021-06-21,133.3566,125.5772,-28.12,-5.83,uscito dalla classifica
+IBM,stocks,2021-05-13,2021-07-02,115.5477,119.89,17.74,3.76,uscito dalla classifica
+AMAT,stocks,2021-07-02,2021-07-09,134.077,127.7161,-24.25,-4.74,uscito dalla classifica
+EBAY,stocks,2021-06-21,2021-08-06,57.939,61.4293,29.09,6.02,uscito dalla classifica
+NVDA,stocks,2021-06-08,2021-08-19,17.4487,19.4003,55.24,11.18,uscito dalla classifica
+ORCL,stocks,2021-08-19,2021-09-03,82.2611,83.1584,5.57,1.09,uscito dalla classifica
+META,stocks,2021-07-09,2021-09-21,342.211,354.9225,18.75,3.71,uscito dalla classifica
+ADBE,stocks,2021-08-06,2021-09-23,629.6847,631.9722,1.9,0.36,uscito dalla classifica
+ACN,stocks,2021-09-21,2021-09-29,307.5337,300.3298,-12.25,-2.34,uscito dalla classifica
+GOOGL,stocks,2021-03-05,2021-09-29,102.141,135.6222,94.65,32.78,uscito dalla classifica
+INTU,stocks,2021-06-17,2021-09-29,449.6747,526.4766,82.61,17.08,uscito dalla classifica
+MSFT,stocks,2021-09-23,2021-09-29,286.9534,273.4832,-24.74,-4.69,uscito dalla classifica
+NVDA,stocks,2021-09-03,2021-09-29,22.2411,20.8396,-33.83,-6.3,uscito dalla classifica
+ADI,stocks,2021-09-29,2021-10-01,156.9484,154.3028,-7.69,-1.69,uscito dalla classifica
+AVGO,stocks,2021-09-29,2021-10-01,45.2126,44.6377,-6.44,-1.27,uscito dalla classifica
+ORCL,stocks,2021-09-29,2021-10-01,84.9224,81.6891,-19.3,-3.81,uscito dalla classifica
+TXN,stocks,2021-10-01,2021-10-05,167.1535,165.947,-3.62,-0.72,uscito dalla classifica
+IBM,stocks,2021-10-05,2021-10-18,119.5998,118.8705,-3.04,-0.61,uscito dalla classifica
+BKNG,stocks,2021-10-01,2021-10-26,94.4772,94.6227,0.77,0.15,uscito dalla classifica
+ORCL,stocks,2021-10-04,2021-11-05,83.3717,89.855,33.64,7.78,uscito dalla classifica
+CRM,stocks,2021-09-29,2021-11-29,268.5042,283.958,29.17,5.76,uscito dalla classifica
+NFLX,stocks,2021-09-29,2021-12-01,58.9294,64.9175,51.5,10.16,uscito dalla classifica
+INTU,stocks,2021-10-26,2021-12-20,582.1909,584.9874,2.41,0.48,uscito dalla classifica
+MSFT,stocks,2021-11-05,2021-12-20,325.0324,307.5661,-24.88,-5.37,uscito dalla classifica
+NVDA,stocks,2021-10-18,2021-12-20,21.6608,27.1764,125.68,25.46,uscito dalla classifica
+ACN,stocks,2021-12-01,2022-01-10,337.5387,335.4922,-3.38,-0.61,uscito dalla classifica
+AVGO,stocks,2021-12-20,2022-01-14,57.3587,54.8626,-23.82,-4.35,uscito dalla classifica
+AMAT,stocks,2022-01-14,2022-01-19,149.7849,148.3358,-5.15,-0.97,uscito dalla classifica
+QCOM,stocks,2021-11-29,2022-01-19,161.0705,162.4987,4.74,0.89,uscito dalla classifica
+AAPL,stocks,2021-12-20,2022-01-20,164.4622,163.0284,-4.77,-0.87,uscito dalla classifica
+BKNG,stocks,2022-01-20,2022-01-21,94.5573,95.0425,2.75,0.51,semaforo rosso
+CSCO,stocks,2022-01-19,2022-01-21,50.8954,50.9145,0.2,0.04,semaforo rosso
+CTSH,stocks,2022-01-10,2022-01-21,79.1496,79.2903,0.97,0.18,semaforo rosso
+HPE,stocks,2022-01-19,2022-01-21,15.2276,14.6727,-19.78,-3.64,semaforo rosso
+HPQ,stocks,2021-12-20,2022-01-21,30.115,30.005,-1.72,-0.37,semaforo rosso
+GLD,defensive,2022-01-21,2022-01-28,172.126,166.4767,-17.47,-3.28,uscito dalla classifica
+AAPL,stocks,2022-02-02,2022-02-04,170.7753,167.826,-9.13,-1.73,semaforo rosso
+CTSH,stocks,2022-02-02,2022-02-04,79.5297,78.7306,-5.31,-1.0,semaforo rosso
+HPE,stocks,2022-02-02,2022-02-04,14.7374,14.7826,1.62,0.31,semaforo rosso
+HPQ,stocks,2022-02-02,2022-02-04,31.3156,31.2444,-1.2,-0.23,semaforo rosso
+IBM,stocks,2022-02-02,2022-02-04,113.6268,115.3123,7.06,1.48,semaforo rosso
+GLD,defensive,2022-02-04,2022-02-10,168.124,170.4348,7.25,1.37,uscito dalla classifica
+AAPL,stocks,2022-02-10,2022-02-11,170.4052,168.4657,-6.02,-1.14,semaforo rosso
+AVGO,stocks,2022-02-10,2022-02-11,54.8674,54.4528,-4.0,-0.76,semaforo rosso
+CTSH,stocks,2022-02-10,2022-02-11,82.9014,83.0385,0.79,0.17,semaforo rosso
+HPQ,stocks,2022-02-10,2022-02-11,31.7058,31.7641,0.97,0.18,semaforo rosso
+QCOM,stocks,2022-02-10,2022-02-11,161.6108,157.2114,-14.4,-2.72,semaforo rosso
+GLD,defensive,2022-02-11,2022-02-14,170.8354,173.6931,8.77,1.67,uscito dalla classifica
+GLD,defensive,2022-02-16,2022-03-30,173.5767,179.6701,18.47,3.51,uscito dalla classifica
+AVGO,stocks,2022-03-30,2022-03-31,59.2796,58.4508,-7.41,-1.4,semaforo rosso
+CTSH,stocks,2022-03-30,2022-03-31,85.4227,84.1779,-7.72,-1.46,semaforo rosso
+HPE,stocks,2022-03-30,2022-03-31,15.5178,15.1024,-14.18,-2.68,semaforo rosso
+HPQ,stocks,2022-03-30,2022-03-31,33.3767,31.0345,-37.19,-7.02,semaforo rosso
+NVDA,stocks,2022-03-30,2022-03-31,28.2041,27.6562,-9.27,-1.94,semaforo rosso
+GLD,defensive,2022-03-31,2022-04-05,181.0005,180.8195,-0.51,-0.1,uscito dalla classifica
+AAPL,stocks,2022-04-05,2022-04-06,173.6868,168.4857,-13.87,-2.99,semaforo rosso
+AVGO,stocks,2022-04-05,2022-04-06,58.4192,55.8121,-22.97,-4.46,semaforo rosso
+CTSH,stocks,2022-04-05,2022-04-06,82.5713,79.3703,-19.95,-3.88,semaforo rosso
+HPQ,stocks,2022-04-05,2022-04-06,30.4452,29.8351,-10.31,-2.0,semaforo rosso
+NVDA,stocks,2022-04-05,2022-04-06,27.1536,24.8176,-44.27,-8.6,semaforo rosso
+GLD,defensive,2022-04-06,2022-04-25,179.8699,177.0814,-7.63,-1.55,uscito dalla classifica
+IEF,defensive,2022-08-09,2022-08-10,89.8449,90.1449,1.64,0.33,uscito dalla classifica
+GLD,defensive,2022-12-09,2022-12-12,167.3436,166.3548,-2.9,-0.59,uscito dalla classifica
+IEF,defensive,2022-12-14,2022-12-19,85.983,85.5372,-2.54,-0.52,uscito dalla classifica
+TLT,defensive,2022-12-15,2022-12-19,92.7363,90.4647,-11.97,-2.45,uscito dalla classifica
+TLT,defensive,2022-12-23,2022-12-28,87.7739,86.037,-9.61,-1.98,uscito dalla classifica
+IEF,defensive,2022-12-22,2022-12-29,84.9224,83.7281,-6.85,-1.41,uscito dalla classifica
+TLT,defensive,2023-01-18,2023-01-19,92.7964,92.4038,-2.08,-0.42,uscito dalla classifica
+GLD,defensive,2022-12-13,2023-01-27,169.2946,179.1804,28.65,5.84,uscito dalla classifica
+IEF,defensive,2023-01-17,2023-01-27,86.1631,86.1969,0.19,0.04,uscito dalla classifica
+TLT,defensive,2023-01-20,2023-01-27,91.5157,90.7646,-4.02,-0.82,uscito dalla classifica
+AVGO,stocks,2023-01-27,2023-01-31,56.4482,55.3223,-9.75,-1.99,semaforo rosso
+BKNG,stocks,2023-01-27,2023-01-31,94.6773,94.5027,-0.9,-0.18,semaforo rosso
+HPE,stocks,2023-01-27,2023-01-31,14.7073,14.5427,-4.93,-1.12,semaforo rosso
+NFLX,stocks,2023-01-27,2023-01-31,36.3382,34.9825,-18.24,-3.73,semaforo rosso
+ORCL,stocks,2023-01-27,2023-01-31,85.4527,83.6382,-10.38,-2.12,semaforo rosso
+GLD,defensive,2023-01-31,2023-02-01,178.9094,179.6601,2.01,0.42,uscito dalla classifica
+TLT,defensive,2023-01-31,2023-02-01,91.5357,92.1639,3.29,0.69,uscito dalla classifica
+AVGO,stocks,2023-02-01,2023-02-23,55.5177,55.6722,1.34,0.28,uscito dalla classifica
+NFLX,stocks,2023-02-01,2023-02-24,35.4077,31.914,-47.48,-9.87,uscito dalla classifica
+ADI,stocks,2023-02-24,2023-03-13,173.3366,169.885,-8.65,-1.99,semaforo rosso
+AMAT,stocks,2023-02-23,2023-03-13,109.4647,110.5747,4.87,1.01,semaforo rosso
+BKNG,stocks,2023-02-01,2023-03-13,94.6973,96.0719,6.98,1.45,semaforo rosso
+META,stocks,2023-02-01,2023-03-13,146.7033,176.1819,87.02,20.09,semaforo rosso
+NVDA,stocks,2023-02-01,2023-03-13,19.6398,22.6687,74.21,15.42,semaforo rosso
+GLD,defensive,2023-03-13,2023-03-14,176.7483,177.2613,1.47,0.29,uscito dalla classifica
+AVGO,stocks,2023-03-14,2023-04-27,59.3096,58.9805,-2.52,-0.55,uscito dalla classifica
+BKNG,stocks,2023-03-14,2023-05-08,97.6988,100.4897,14.43,2.86,uscito dalla classifica
+MSFT,stocks,2023-05-08,2023-07-03,301.8809,330.5646,49.33,9.5,uscito dalla classifica
+CRM,stocks,2023-03-14,2023-07-10,176.7183,204.9775,80.77,15.99,uscito dalla classifica
+ORCL,stocks,2023-04-27,2023-07-17,90.4152,114.2329,117.59,26.34,uscito dalla classifica
+AMZN,stocks,2023-07-03,2023-08-03,130.8854,127.4163,-14.73,-2.65,uscito dalla classifica
+ORCL,stocks,2023-08-03,2023-08-07,110.8754,110.9845,0.53,0.1,uscito dalla classifica
+AVGO,stocks,2023-07-10,2023-08-10,81.7108,82.0989,2.78,0.47,uscito dalla classifica
+NVDA,stocks,2023-03-14,2023-08-10,23.4317,42.009,400.47,79.28,uscito dalla classifica
+AMAT,stocks,2023-08-07,2023-08-14,143.4017,134.6426,-33.12,-6.11,uscito dalla classifica
+INTC,stocks,2023-08-14,2023-08-17,34.117,32.9935,-19.93,-3.29,uscito dalla classifica
+META,stocks,2023-03-14,2023-08-17,185.8929,290.1249,283.23,56.07,uscito dalla classifica
+NVDA,stocks,2023-08-17,2023-08-18,43.8619,42.4788,-21.38,-3.15,uscito dalla classifica
+AMZN,stocks,2023-08-10,2023-09-21,139.1445,131.874,-36.63,-5.23,uscito dalla classifica
+ADBE,stocks,2023-07-17,2023-09-22,513.2565,512.8335,-0.46,-0.08,uscito dalla classifica
+BKNG,stocks,2023-08-17,2023-09-22,125.2226,118.9205,-34.12,-5.03,uscito dalla classifica
+CTSH,stocks,2023-09-21,2023-09-22,65.5828,65.4972,-0.88,-0.13,uscito dalla classifica
+GOOGL,stocks,2023-08-10,2023-09-22,130.145,129.4652,-3.66,-0.52,uscito dalla classifica
+INTU,stocks,2023-08-18,2023-09-22,466.7633,489.695,32.32,4.91,uscito dalla classifica
+ACN,stocks,2023-09-26,2023-09-27,295.7878,295.0124,-1.59,-0.26,uscito dalla classifica
+BKNG,stocks,2023-09-26,2023-09-27,120.4102,119.8301,-3.21,-0.48,uscito dalla classifica
+CTSH,stocks,2023-09-25,2023-09-27,65.7729,65.3673,-4.11,-0.62,uscito dalla classifica
+GOOGL,stocks,2023-09-26,2023-09-27,128.6143,127.2963,-6.83,-1.02,uscito dalla classifica
+IBM,stocks,2023-09-22,2023-09-27,134.4572,130.9145,-17.6,-2.63,uscito dalla classifica
+BKNG,stocks,2023-09-28,2023-10-02,120.5102,119.97,-2.96,-0.45,uscito dalla classifica
+GOOGL,stocks,2023-09-29,2023-10-02,132.086,129.905,-10.94,-1.65,uscito dalla classifica
+META,stocks,2023-09-29,2023-10-02,304.6122,299.7201,-10.65,-1.61,uscito dalla classifica
+BKNG,stocks,2023-10-03,2023-10-04,119.4297,117.7411,-9.22,-1.41,uscito dalla classifica
+HPE,stocks,2023-09-29,2023-10-04,16.4282,15.7721,-23.57,-3.99,uscito dalla classifica
+META,stocks,2023-10-03,2023-10-04,301.5207,295.7421,-12.49,-1.92,uscito dalla classifica
+NVDA,stocks,2023-10-09,2023-10-18,44.7324,42.4388,-28.57,-5.13,uscito dalla classifica
+INTU,stocks,2023-10-05,2023-10-20,502.7312,506.4067,4.75,0.73,uscito dalla classifica
+INTC,stocks,2023-09-29,2023-10-23,35.0775,34.013,-20.12,-3.03,uscito dalla classifica
+ADBE,stocks,2023-10-18,2023-10-26,554.7572,529.735,-23.84,-4.51,uscito dalla classifica
+AVGO,stocks,2023-10-20,2023-10-26,84.7424,82.039,-20.73,-3.19,uscito dalla classifica
+GOOGL,stocks,2023-10-03,2023-10-26,132.7463,122.0489,-52.52,-8.06,uscito dalla classifica
+META,stocks,2023-10-05,2023-10-26,301.8909,292.0539,-21.16,-3.26,uscito dalla classifica
+IBM,stocks,2023-10-27,2023-10-30,131.0055,130.4747,-2.5,-0.41,uscito dalla classifica
+NFLX,stocks,2023-10-27,2023-10-30,40.6603,40.2199,-6.68,-1.08,uscito dalla classifica
+INTC,stocks,2023-10-30,2023-11-03,34.8974,37.3513,43.32,7.03,uscito dalla classifica
+IBM,stocks,2023-11-01,2023-11-16,132.2561,140.9995,33.96,6.61,uscito dalla classifica
+AMZN,stocks,2023-10-31,2023-11-24,132.8164,146.6266,64.34,10.4,uscito dalla classifica
+MSFT,stocks,2023-10-23,2023-11-28,318.179,370.2548,103.98,16.37,uscito dalla classifica
+NVDA,stocks,2023-11-16,2023-12-01,48.5543,46.3668,-25.11,-4.51,uscito dalla classifica
+META,stocks,2023-11-28,2023-12-07,330.4051,314.6026,-33.2,-4.78,uscito dalla classifica
+NFLX,stocks,2023-10-31,2023-12-08,40.9405,45.0575,62.23,10.06,uscito dalla classifica
+META,stocks,2023-12-08,2023-12-19,320.18,342.1289,45.66,6.86,uscito dalla classifica
+ADBE,stocks,2023-11-03,2024-01-03,560.28,574.2927,16.12,2.5,uscito dalla classifica
+INTC,stocks,2023-11-24,2024-01-29,43.1216,43.1084,-0.21,-0.03,uscito dalla classifica
+INTU,stocks,2023-12-01,2024-03-11,556.7082,632.7834,79.01,13.67,uscito dalla classifica
+AVGO,stocks,2023-12-19,2024-03-20,111.1155,120.9495,62.55,8.85,uscito dalla classifica
+CRM,stocks,2024-01-03,2024-04-05,248.8744,288.2758,107.34,15.83,uscito dalla classifica
+AMAT,stocks,2024-04-05,2024-04-18,201.0205,193.5432,-29.21,-3.72,uscito dalla classifica
+QCOM,stocks,2023-12-07,2024-04-19,124.092,153.0234,154.58,23.31,uscito dalla classifica
+AMZN,stocks,2024-04-18,2024-04-22,181.5607,176.8515,-19.68,-2.59,uscito dalla classifica
+META,stocks,2024-03-11,2024-04-22,493.0664,485.3372,-10.15,-1.57,uscito dalla classifica
+NFLX,stocks,2024-03-20,2024-04-22,62.031,55.0425,-86.68,-11.27,uscito dalla classifica
+NVDA,stocks,2024-01-29,2024-04-22,61.0905,77.8411,185.62,27.42,uscito dalla classifica
+HPE,stocks,2024-04-22,2024-04-24,15.998,15.972,-1.24,-0.16,uscito dalla classifica
+AMZN,stocks,2024-04-24,2024-04-25,180.03,169.5952,-37.93,-5.8,uscito dalla classifica
+META,stocks,2024-04-24,2024-04-25,504.0219,417.6411,-132.33,-17.14,uscito dalla classifica
+HPE,stocks,2024-04-25,2024-05-01,15.8879,15.902,0.65,0.09,uscito dalla classifica
+NVDA,stocks,2024-05-01,2024-05-02,84.8824,84.1679,-6.12,-0.84,uscito dalla classifica
+EBAY,stocks,2024-04-19,2024-05-03,48.3742,47.7161,-10.67,-1.36,uscito dalla classifica
+PYPL,stocks,2024-04-22,2024-05-09,62.3712,63.1384,9.41,1.23,uscito dalla classifica
+AMZN,stocks,2024-05-02,2024-05-24,180.9404,181.5592,2.47,0.34,uscito dalla classifica
+AVGO,stocks,2024-05-24,2024-06-03,136.7784,132.0439,-26.19,-3.46,uscito dalla classifica
+TXN,stocks,2024-04-25,2024-06-12,163.6318,186.5367,74.43,14.0,uscito dalla classifica
+GOOGL,stocks,2024-04-22,2024-06-27,152.9364,182.5587,148.19,19.37,uscito dalla classifica
+HPE,stocks,2024-06-27,2024-07-08,19.8699,19.6902,-7.75,-0.9,uscito dalla classifica
+AMAT,stocks,2024-06-03,2024-07-18,214.5872,218.1209,12.01,1.65,uscito dalla classifica
+QCOM,stocks,2024-05-03,2024-07-18,173.0765,184.5977,50.33,6.66,uscito dalla classifica
+GOOGL,stocks,2024-07-08,2024-07-19,188.4142,177.3113,-52.01,-5.89,uscito dalla classifica
+AVGO,stocks,2024-06-12,2024-07-25,146.5732,148.1259,6.38,1.06,uscito dalla classifica
+NVDA,stocks,2024-05-09,2024-07-25,90.3151,112.6736,186.63,24.76,uscito dalla classifica
+HPE,stocks,2024-07-18,2024-07-26,19.97,18.5807,-57.81,-6.96,uscito dalla classifica
+TXN,stocks,2024-07-25,2024-07-26,185.6028,187.4662,7.74,1.0,uscito dalla classifica
+HPQ,stocks,2024-07-19,2024-07-31,33.937,32.6037,-32.27,-3.93,uscito dalla classifica
+TXN,stocks,2024-07-31,2024-08-02,192.6363,176.4917,-66.0,-8.38,uscito dalla classifica
+ORCL,stocks,2024-07-25,2024-08-05,136.6783,124.5977,-69.98,-8.84,uscito dalla classifica
+AAPL,stocks,2024-07-18,2024-08-06,228.2241,203.2583,-81.11,-10.94,uscito dalla classifica
+PYPL,stocks,2024-08-07,2024-08-13,62.6813,63.2584,6.07,0.92,uscito dalla classifica
+CTSH,stocks,2024-07-26,2024-08-16,70.1651,72.5037,25.61,3.33,uscito dalla classifica
+EA,stocks,2024-07-26,2024-08-23,140.4102,147.0964,37.34,4.76,uscito dalla classifica
+IBM,stocks,2024-08-05,2024-08-26,173.4967,185.6871,50.91,7.03,uscito dalla classifica
+AVGO,stocks,2024-08-23,2024-08-27,161.7608,154.3328,-36.27,-4.59,uscito dalla classifica
+ORCL,stocks,2024-08-27,2024-08-28,134.4372,135.2523,4.72,0.61,uscito dalla classifica
+AVGO,stocks,2024-08-28,2024-08-29,156.9184,155.2024,-8.59,-1.09,uscito dalla classifica
+HPQ,stocks,2024-08-26,2024-08-29,32.5263,30.9145,-39.33,-4.96,uscito dalla classifica
+NVDA,stocks,2024-08-16,2024-08-30,121.6608,119.1404,-15.96,-2.07,uscito dalla classifica
+AAPL,stocks,2024-08-13,2024-09-05,217.2986,219.6801,7.29,1.1,uscito dalla classifica
+TXN,stocks,2024-08-29,2024-09-09,198.4592,190.2148,-31.87,-4.15,uscito dalla classifica
+ADBE,stocks,2024-09-05,2024-09-16,571.0354,537.1313,-39.98,-5.94,uscito dalla classifica
+TXN,stocks,2024-09-16,2024-09-17,187.2336,187.7161,1.62,0.26,uscito dalla classifica
+CTSH,stocks,2024-09-17,2024-09-27,75.2476,74.5527,-5.82,-0.92,uscito dalla classifica
+AAPL,stocks,2024-09-27,2024-10-08,226.6733,222.3288,-11.93,-1.92,uscito dalla classifica
+IBM,stocks,2024-09-09,2024-10-28,191.5157,204.1679,48.61,6.61,uscito dalla classifica
+EBAY,stocks,2024-08-02,2024-10-30,53.9169,60.9495,94.45,13.04,uscito dalla classifica
+META,stocks,2024-10-30,2024-11-14,597.3685,572.9634,-33.49,-4.09,uscito dalla classifica
+NVDA,stocks,2024-10-08,2024-12-11,129.975,136.9315,32.61,5.35,uscito dalla classifica
+ORCL,stocks,2024-08-30,2024-12-11,136.8584,173.8031,205.23,26.99,uscito dalla classifica
+BKNG,stocks,2024-11-14,2025-01-03,195.2176,194.5527,-2.66,-0.34,uscito dalla classifica
+CRM,stocks,2024-12-11,2025-01-08,348.5842,323.2383,-64.43,-7.27,uscito dalla classifica
+NFLX,stocks,2024-10-28,2025-01-13,75.9079,83.1084,74.38,9.49,uscito dalla classifica
+PYPL,stocks,2024-08-29,2025-01-13,70.6453,81.2394,115.04,15.0,uscito dalla classifica
+AVGO,stocks,2025-01-03,2025-01-28,230.3451,204.9175,-86.3,-11.04,uscito dalla classifica
+PYPL,stocks,2025-01-28,2025-02-05,88.8144,77.3113,-103.79,-12.95,uscito dalla classifica
+GOOGL,stocks,2025-01-13,2025-02-10,189.0545,186.1669,-12.49,-1.53,uscito dalla classifica
+AMZN,stocks,2025-01-08,2025-02-19,223.2966,225.4072,7.77,0.95,uscito dalla classifica
+AVGO,stocks,2025-02-10,2025-02-24,224.2721,215.3423,-32.05,-3.98,uscito dalla classifica
+META,stocks,2025-01-13,2025-03-05,603.9418,637.0213,44.8,5.48,uscito dalla classifica
+CSCO,stocks,2024-12-11,2025-03-07,56.3882,60.5797,53.54,7.43,semaforo rosso
+CTSH,stocks,2025-02-24,2025-03-07,82.9214,80.1299,-26.07,-3.37,semaforo rosso
+EBAY,stocks,2025-03-05,2025-03-07,65.0925,65.957,10.53,1.33,semaforo rosso
+IBM,stocks,2025-02-19,2025-03-07,252.096,236.4117,-51.65,-6.22,semaforo rosso
+NFLX,stocks,2025-02-05,2025-03-07,98.8194,89.7151,-64.3,-9.21,semaforo rosso
+IEF,defensive,2025-03-10,2025-03-12,88.9945,88.4158,-5.05,-0.65,uscito dalla classifica
+GLD,defensive,2025-03-07,2025-03-26,269.2245,278.7905,27.64,3.55,uscito dalla classifica
+IEF,defensive,2025-03-25,2025-03-26,88.5543,88.4657,-0.78,-0.1,uscito dalla classifica
+BKNG,stocks,2025-03-26,2025-03-27,188.8244,187.1364,-6.99,-0.89,semaforo rosso
+IBM,stocks,2025-03-26,2025-03-27,241.7508,240.0299,-5.57,-0.71,semaforo rosso
+INTC,stocks,2025-03-26,2025-03-27,24.2621,23.2734,-31.88,-4.08,semaforo rosso
+NFLX,stocks,2025-03-26,2025-03-27,99.4297,97.3713,-16.2,-2.07,semaforo rosso
+TLT,defensive,2025-04-08,2025-04-09,83.1416,81.1894,-18.08,-2.35,uscito dalla classifica
+IEF,defensive,2025-03-27,2025-04-14,88.4042,88.2359,-1.47,-0.19,uscito dalla classifica
+IEF,defensive,2025-04-15,2025-05-09,88.6343,89.0155,3.33,0.43,uscito dalla classifica
+GLD,defensive,2025-03-27,2025-05-13,280.6903,298.8705,49.89,6.48,uscito dalla classifica
+EA,stocks,2025-05-13,2025-05-27,147.5337,146.6966,-4.41,-0.57,uscito dalla classifica
+EBAY,stocks,2025-05-13,2025-07-07,68.3341,74.9425,75.14,9.67,uscito dalla classifica
+MSFT,stocks,2025-05-13,2025-07-11,442.8013,493.3432,79.81,11.41,uscito dalla classifica
+NFLX,stocks,2025-05-13,2025-07-21,111.5057,120.5397,62.95,8.1,uscito dalla classifica
+IBM,stocks,2025-05-13,2025-07-22,246.4432,275.5222,91.68,11.8,uscito dalla classifica
+NFLX,stocks,2025-07-22,2025-07-23,123.1015,118.9205,-29.52,-3.4,uscito dalla classifica
+TXN,stocks,2025-07-21,2025-07-24,209.5147,179.4402,-120.3,-14.35,uscito dalla classifica
+META,stocks,2025-07-23,2025-08-05,703.8517,772.9134,82.69,9.81,uscito dalla classifica
+INTU,stocks,2025-08-05,2025-08-08,773.4765,748.1857,-29.62,-3.27,uscito dalla classifica
+ORCL,stocks,2025-07-07,2025-08-22,231.1955,230.4247,-2.81,-0.33,uscito dalla classifica
+MSFT,stocks,2025-07-24,2025-08-26,504.0419,499.9899,-5.76,-0.8,uscito dalla classifica
+ORCL,stocks,2025-08-26,2025-08-27,231.5757,231.3443,-0.71,-0.1,uscito dalla classifica
+INTC,stocks,2025-08-27,2025-08-29,24.2021,24.7476,16.0,2.25,uscito dalla classifica
+ORCL,stocks,2025-08-29,2025-09-02,234.147,218.5507,-48.36,-6.66,uscito dalla classifica
+NVDA,stocks,2025-07-11,2025-09-03,163.3917,170.5547,34.21,4.38,uscito dalla classifica
+EBAY,stocks,2025-08-08,2025-09-30,91.976,90.1949,-17.28,-1.94,uscito dalla classifica
+EA,stocks,2025-08-22,2025-10-02,171.8359,200.8495,142.36,16.88,uscito dalla classifica
+HPE,stocks,2025-09-02,2025-10-17,21.5608,21.949,12.27,1.8,uscito dalla classifica
+ORCL,stocks,2025-09-30,2025-10-23,279.5597,269.1853,-32.2,-3.71,uscito dalla classifica
+AVGO,stocks,2025-05-27,2025-11-14,230.3251,328.8555,329.48,42.78,uscito dalla classifica
+INTC,stocks,2025-10-02,2025-11-18,35.7779,34.2329,-41.35,-4.32,uscito dalla classifica
+NVDA,stocks,2025-10-17,2025-11-19,179.8399,184.2578,17.67,2.46,uscito dalla classifica
+IBM,stocks,2025-11-19,2025-12-30,284.8423,299.89,46.47,5.28,uscito dalla classifica
+AAPL,stocks,2025-11-18,2026-01-02,269.3946,271.3842,7.01,0.74,uscito dalla classifica
+EA,stocks,2025-11-14,2026-02-03,200.8104,203.3383,11.62,1.26,uscito dalla classifica
+CTSH,stocks,2025-12-30,2026-02-04,83.0815,71.7741,-125.16,-13.61,uscito dalla classifica
+GOOGL,stocks,2025-09-03,2026-02-11,225.5327,318.1908,334.01,41.08,uscito dalla classifica
+CSCO,stocks,2026-02-11,2026-02-13,84.9925,73.3733,-147.3,-13.67,uscito dalla classifica
+INTC,stocks,2026-02-03,2026-02-24,50.08,44.073,-110.95,-11.99,uscito dalla classifica
+NVDA,stocks,2026-02-18,2026-02-27,188.4042,180.7396,-40.67,-4.07,uscito dalla classifica
+INTC,stocks,2026-02-27,2026-03-04,44.4822,44.048,-9.39,-0.98,uscito dalla classifica
+TXN,stocks,2026-02-04,2026-03-06,218.9194,189.5352,-107.08,-13.42,uscito dalla classifica
+INTC,stocks,2026-03-05,2026-03-09,44.8924,42.7186,-46.26,-4.84,uscito dalla classifica
+CSCO,stocks,2026-02-24,2026-03-10,76.7784,76.1019,-7.17,-0.88,uscito dalla classifica
+ADI,stocks,2026-01-02,2026-03-13,272.7663,307.936,123.18,12.89,uscito dalla classifica
+CSCO,stocks,2026-03-12,2026-03-13,75.998,77.0215,9.83,1.35,uscito dalla classifica
+INTC,stocks,2026-03-10,2026-03-13,45.4327,45.947,11.16,1.13,uscito dalla classifica
+CSCO,stocks,2026-03-16,2026-03-19,77.939,76.5117,-18.09,-1.83,uscito dalla classifica
+AMAT,stocks,2025-10-23,2026-03-23,217.2986,366.7865,576.24,68.79,semaforo rosso
+CSCO,stocks,2026-03-20,2026-03-23,77.4687,77.5812,1.44,0.15,semaforo rosso
+EBAY,stocks,2026-03-06,2026-03-23,92.2361,89.915,-17.48,-2.52,semaforo rosso
+CSCO,stocks,2026-04-09,2026-05-13,83.2516,98.6007,183.93,18.44,uscito dalla classifica
+GOOGL,stocks,2026-05-13,2026-06-01,385.3126,375.862,-27.97,-2.45,uscito dalla classifica
+ADI,stocks,2026-04-09,2026-06-29,344.182,386.7865,123.49,12.38,uscito dalla classifica
+TXN,stocks,2026-04-09,2026-06-29,209.4947,277.4112,291.08,32.42,uscito dalla classifica
+HPQ,stocks,2026-06-29,2026-07-01,22.7414,21.7091,-37.33,-4.54,uscito dalla classifica
+TXN,stocks,2026-07-01,2026-07-06,291.3256,296.5317,13.95,1.79,uscito dalla classifica
+INTC,stocks,2026-04-09,2026-07-08,58.4292,108.2458,850.57,85.26,uscito dalla classifica
+CSCO,stocks,2026-06-29,2026-07-16,114.1671,109.7351,-57.23,-3.88,uscito dalla classifica
+EBAY,stocks,2026-07-06,2026-07-17,114.097,110.3348,-26.47,-3.3,uscito dalla classifica
+TXN,stocks,2026-07-16,2026-07-17,290.7453,279.94,-51.38,-3.72,uscito dalla classifica
+AMAT,stocks,2026-04-09,2026-07-21,384.5522,564.0678,465.71,46.68,uscito dalla classifica
+EBAY,stocks,2026-07-21,2026-07-23,113.0265,109.5852,-41.42,-3.04,uscito dalla classifica
+AMAT,stocks,2026-07-23,2026-07-27,548.6542,538.6905,-24.88,-1.82,uscito dalla classifica
+HPE,stocks,2026-06-01,2026-07-30,43.962,46.1469,55.63,4.97,uscito dalla classifica
+AAPL,stocks,2026-07-17,2026-08-03,331.8558,309.1553,-91.74,-6.84,uscito dalla classifica
+EBAY,stocks,2026-07-30,2026-08-04,113.5668,105.8271,-80.28,-6.82,uscito dalla classifica
+PYPL,stocks,2026-07-27,2026-08-31,56.2481,53.2334,-74.41,-5.36,uscito dalla classifica
+BKNG,stocks,2026-08-04,2026-09-08,192.4662,191.0244,-8.23,-0.75,uscito dalla classifica
+AMZN,stocks,2026-09-01,2026-09-10,254.9574,249.9849,-0.05,-1.95,uscito dalla classifica
+HPQ,stocks,2026-07-08,2026-10-12,22.6713,30.1949,447.83,33.19,uscito dalla classifica
+INTC,stocks,2026-10-12,2026-10-13,102.5663,99.5402,-44.67,-2.95,uscito dalla classifica
+QCOM,stocks,2026-10-13,2026-10-15,172.6313,169.2253,-29.05,-1.97,uscito dalla classifica
+CSCO,stocks,2026-10-15,2026-10-16,112.2261,109.905,-29.62,-2.07,uscito dalla classifica
+HPE,stocks,2026-08-03,2026-10-16,47.4137,57.6262,269.4,21.54,uscito dalla classifica
+QCOM,stocks,2026-10-16,2026-10-19,175.0975,175.897,6.54,0.46,uscito dalla classifica
+CRM,stocks,2026-09-08,2026-10-30,253.3966,231.2243,-95.21,-8.75,uscito dalla classifica
+HPQ,stocks,2026-10-30,2026-11-02,27.3136,28.8056,60.12,5.46,uscito dalla classifica
+MSFT,stocks,2026-08-31,2026-11-03,510.6352,508.7505,-4.83,-0.37,uscito dalla classifica
+AAPL,stocks,2026-10-19,2026-11-04,340.9454,341.3942,1.85,0.13,uscito dalla classifica
+ACN,stocks,2026-10-12,2026-11-06,209.6648,258.4032,64.22,23.25,semaforo rosso
+CTSH,stocks,2026-10-16,2026-11-06,66.9234,65.0724,-39.6,-2.77,semaforo rosso
+EBAY,stocks,2026-11-02,2026-11-06,121.6908,121.5992,-0.87,-0.08,semaforo rosso
+IBM,stocks,2026-11-03,2026-11-06,249.6848,242.7985,-36.08,-2.76,semaforo rosso
+MSFT,stocks,2026-11-04,2026-11-06,543.9668,525.4272,-47.98,-3.41,semaforo rosso
+EA,stocks,2026-07-17,2026-11-06,209.2946,,,,fine backtest
