@@ -1,0 +1,4 @@
+simbolo,classe,ingresso,uscita,prezzo_ingresso,prezzo_uscita,pnl_usd,pnl_pct,motivo_uscita
+TQQQ,leveraged,2017-10-30,2018-12-24,5.0395,3.7951,-241.99,-24.69,uscito dalla classifica
+TQQQ,leveraged,2019-01-22,2020-03-23,5.2316,4.2699,-136.56,-18.38,uscito dalla classifica
+TQQQ,leveraged,2020-03-30,2026-11-06,5.4217,52.25,5260.19,863.72,fine backtest

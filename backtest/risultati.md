@@ -7,51 +7,57 @@ Capitale iniziale 1,000 $. Costi: 5 punti base per operazione. Periodo A = fino 
 | Variante | Capitale finale $ | Rend. annuo % | Perdita max % | Sharpe | Annuo A % | Annuo B % | Operazioni |
 |---|---|---|---|---|---|---|---|
 | spy_compra_e_tieni | 3,925 | 14.6 | 33.4 | 0.87 | 18.2 | 10.7 | 1 |
-| spy_con_semaforo | 2,793 | 10.8 | 16.6 | 0.94 | 13.7 | 7.6 | 17 |
-| etf_rotazione | 1,695 | 5.4 | 18.8 | 0.45 | 6.6 | 4.1 | 463 |
-| etf_aggressiva | 1,493 | 4.1 | 51.6 | 0.28 | 7.4 | 0.3 | 490 |
-| etf_aggressiva_top3 | 1,447 | 3.7 | 53.3 | 0.28 | 6.3 | 0.7 | 371 |
-| azioni_etf_leva | 7,717 | 22.5 | 49.1 | 0.81 | 37.1 | 8.3 | 710 |
+| qqq_compra_e_tieni | 5,820 | 19.2 | 34.8 | 0.89 | 26.8 | 11.3 | 1 |
+| tqqq_compra_e_tieni | 5,882 | 19.3 | 81.4 | 0.60 | 33.3 | 5.3 | 3 |
+| qqq_semaforo | 4,230 | 15.4 | 22.8 | 0.93 | 19.9 | 10.6 | 21 |
+| tqqq_semaforo | 9,051 | 24.5 | 57.2 | 0.70 | 32.8 | 15.6 | 21 |
+| tqqq_semaforo_difensivi | 9,927 | 25.7 | 62.2 | 0.71 | 30.8 | 19.7 | 43 |
+| meta_qqq_meta_tqqq | 7,421 | 22.1 | 50.8 | 0.74 | 28.7 | 14.8 | 79 |
 
 ## Rendimento anno per anno (%)
 
 | Variante | 2016 | 2017 | 2018 | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 | 2025 | 2026 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | spy_compra_e_tieni | +4.4 | +21.3 | -4.9 | +30.6 | +18.2 | +28.3 | -18.0 | +25.9 | +24.7 | +17.6 | +8.6 |
-| spy_con_semaforo | +4.4 | +21.3 | -4.3 | +12.4 | +11.6 | +28.1 | -10.7 | +10.0 | +24.4 | +11.3 | +5.4 |
-| etf_rotazione | +6.1 | +10.7 | +1.8 | -4.2 | +14.5 | +6.5 | -4.4 | +5.9 | +4.3 | +20.7 | -4.9 |
-| etf_aggressiva | +8.8 | +4.3 | +3.4 | +1.5 | +52.1 | -20.1 | -7.9 | +5.0 | +8.0 | +0.0 | -1.2 |
-| etf_aggressiva_top3 | +12.2 | +4.8 | +1.0 | +2.5 | +45.2 | -22.2 | -10.7 | +10.3 | +7.7 | -10.8 | +11.3 |
-| azioni_etf_leva | +16.3 | +30.4 | +24.0 | +13.6 | +138.8 | +1.1 | -11.5 | +42.8 | +9.0 | -1.2 | +10.0 |
+| qqq_compra_e_tieni | -0.1 | +32.0 | -0.1 | +38.4 | +48.1 | +27.2 | -32.3 | +54.4 | +25.4 | +20.7 | +7.1 |
+| tqqq_compra_e_tieni | +0.0 | +8.7 | -30.3 | +94.8 | +65.3 | +82.6 | -78.9 | +195.5 | +58.0 | +34.3 | -0.3 |
+| qqq_semaforo | +0.9 | +32.0 | -1.1 | +15.0 | +33.8 | +27.1 | -17.2 | +34.6 | +25.2 | +12.6 | +4.5 |
+| tqqq_semaforo | +0.0 | +8.7 | -16.1 | +37.6 | +90.9 | +82.5 | -44.0 | +102.6 | +57.7 | +22.9 | -5.7 |
+| tqqq_semaforo_difensivi | +0.0 | +8.7 | -14.8 | +37.6 | +73.8 | +82.5 | -43.2 | +115.2 | +57.7 | +35.2 | -5.7 |
+| meta_qqq_meta_tqqq | +0.4 | +20.6 | -6.9 | +29.5 | +55.4 | +63.9 | -34.9 | +75.9 | +45.2 | +21.5 | -1.2 |
 
 ## Nei momenti difficili (perdita massima nel periodo, %)
 
 | Variante | Crollo Covid (feb–mar 2020) | Anno 2022 | Calo apr 2025 |
 |---|---|---|---|
 | spy_compra_e_tieni | 33.4 | 24.3 | 18.6 |
-| spy_con_semaforo | 14.5 | 11.3 | 8.7 |
-| etf_rotazione | 8.2 | 9.1 | 6.4 |
-| etf_aggressiva | 12.7 | 14.1 | 6.4 |
-| etf_aggressiva_top3 | 15.4 | 15.7 | 5.6 |
-| azioni_etf_leva | 15.1 | 15.4 | 23.3 |
+| qqq_compra_e_tieni | 28.3 | 34.5 | 22.7 |
+| tqqq_compra_e_tieni | 71.6 | 80.8 | 56.7 |
+| qqq_semaforo | 22.8 | 18.0 | 11.5 |
+| tqqq_semaforo | 57.2 | 45.6 | 31.8 |
+| tqqq_semaforo_difensivi | 62.2 | 46.2 | 31.1 |
+| meta_qqq_meta_tqqq | 50.8 | 36.8 | 24.3 |
 
 ## Dettaglio operazioni per variante
 
 **spy_compra_e_tieni**: 1 operazioni, 100% in guadagno, durata media 3665 giorni. Uscite: fine backtest 1.
 Migliori: SPY +2,925$. Peggiori: SPY +2,925$.
 
-**spy_con_semaforo**: 17 operazioni, 47% in guadagno, durata media 177 giorni. Uscite: semaforo rosso 16, fine backtest 1.
-Migliori: SPY +1,793$. Peggiori: SPY +1,793$.
+**qqq_compra_e_tieni**: 1 operazioni, 100% in guadagno, durata media 3665 giorni. Uscite: fine backtest 1.
+Migliori: QQQ +4,820$. Peggiori: QQQ +4,820$.
 
-**etf_rotazione**: 463 operazioni, 43% in guadagno, durata media 24 giorni. Uscite: stop 303, uscito dalla classifica 121, semaforo rosso 36, fine backtest 3.
-Migliori: SMH +259$, KRE +193$, GLD +173$, GDX +65$. Peggiori: XLI -40$, XBI -46$, XLP -65$.
+**tqqq_compra_e_tieni**: 3 operazioni, 33% in guadagno, durata media 1086 giorni. Uscite: uscito dalla classifica 2, fine backtest 1.
+Migliori: TQQQ +4,882$. Peggiori: TQQQ +4,882$.
 
-**etf_aggressiva**: 490 operazioni, 44% in guadagno, durata media 22 giorni. Uscite: stop 309, uscito dalla classifica 141, semaforo rosso 37, fine backtest 3.
-Migliori: TQQQ +367$, KRE +179$, SMH +97$, GDX +88$. Peggiori: UPRO -61$, XLE -83$, TNA -256$.
+**qqq_semaforo**: 21 operazioni, 29% in guadagno, durata media 147 giorni. Uscite: semaforo rosso 21.
+Migliori: QQQ +3,230$. Peggiori: QQQ +3,230$.
 
-**etf_aggressiva_top3**: 371 operazioni, 46% in guadagno, durata media 23 giorni. Uscite: stop 228, uscito dalla classifica 111, semaforo rosso 30, fine backtest 2.
-Migliori: TQQQ +512$, KRE +195$, GDX +100$, SMH +87$. Peggiori: XLE -49$, UPRO -202$, TNA -421$.
+**tqqq_semaforo**: 21 operazioni, 29% in guadagno, durata media 129 giorni. Uscite: semaforo rosso 21.
+Migliori: TQQQ +8,051$. Peggiori: TQQQ +8,051$.
 
-**azioni_etf_leva**: 710 operazioni, 43% in guadagno, durata media 23 giorni. Uscite: stop 434, uscito dalla classifica 200, semaforo rosso 74, fine backtest 2.
-Migliori: PLTR +1,756$, MU +1,480$, MSTR +1,213$, NVDA +923$. Peggiori: AMD -595$, RIVN -735$, ARM -848$.
+**tqqq_semaforo_difensivi**: 43 operazioni, 44% in guadagno, durata media 70 giorni. Uscite: uscito dalla classifica 22, semaforo rosso 21.
+Migliori: TQQQ +8,191$, GLD +791$, IEF +50$, TLT -105$. Peggiori: GLD +791$, IEF +50$, TLT -105$.
+
+**meta_qqq_meta_tqqq**: 79 operazioni, 41% in guadagno, durata media 79 giorni. Uscite: semaforo rosso 42, uscito dalla classifica 37.
+Migliori: TQQQ +4,279$, QQQ +1,849$, GLD +343$, IEF -18$. Peggiori: GLD +343$, IEF -18$, TLT -31$.
 

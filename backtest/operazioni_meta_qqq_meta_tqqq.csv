@@ -1,0 +1,80 @@
+simbolo,classe,ingresso,uscita,prezzo_ingresso,prezzo_uscita,pnl_usd,pnl_pct,motivo_uscita
+QQQ,etf,2016-10-19,2018-10-12,109.7548,164.8575,251.03,50.21,semaforo rosso
+TQQQ,leveraged,2017-10-30,2018-10-12,5.0395,6.8516,171.53,35.96,semaforo rosso
+QQQ,etf,2018-10-15,2018-10-25,164.7423,159.1704,-23.09,-3.38,semaforo rosso
+TQQQ,leveraged,2018-10-15,2018-10-25,6.8204,6.061,-79.2,-11.13,semaforo rosso
+QQQ,etf,2018-11-02,2018-11-05,162.6913,160.7096,-8.04,-1.22,semaforo rosso
+TQQQ,leveraged,2018-11-02,2018-11-05,6.4042,6.1759,-22.59,-3.56,semaforo rosso
+QQQ,etf,2018-11-08,2018-11-12,165.7528,161.3893,-16.98,-2.63,semaforo rosso
+TQQQ,leveraged,2018-11-08,2018-11-12,6.7414,6.2259,-47.33,-7.65,semaforo rosso
+IEF,defensive,2018-12-03,2018-12-04,83.3617,83.7181,2.62,0.43,uscito dalla classifica
+QQQ,etf,2018-12-04,2018-12-06,162.5512,153.933,-32.55,-5.3,semaforo rosso
+TQQQ,leveraged,2018-12-04,2018-12-06,6.2381,5.2664,-91.82,-15.58,semaforo rosso
+IEF,defensive,2018-12-06,2018-12-07,84.3622,84.1479,-1.4,-0.25,uscito dalla classifica
+GLD,defensive,2018-12-17,2019-02-06,117.4287,124.0979,30.05,5.68,uscito dalla classifica
+IEF,defensive,2018-12-10,2019-02-06,84.5122,85.967,9.49,1.72,uscito dalla classifica
+QQQ,etf,2019-02-06,2019-02-07,162.7113,160.6196,-7.34,-1.29,semaforo rosso
+TQQQ,leveraged,2019-02-06,2019-02-07,5.8809,5.6602,-20.57,-3.75,semaforo rosso
+GLD,defensive,2019-02-07,2019-02-15,123.8619,124.5277,2.99,0.54,uscito dalla classifica
+TLT,defensive,2019-02-07,2019-02-15,96.4782,96.4617,-0.09,-0.02,uscito dalla classifica
+QQQ,etf,2019-02-15,2019-03-08,164.092,161.0694,-10.28,-1.84,semaforo rosso
+TQQQ,leveraged,2019-02-15,2019-03-08,6.004,5.6692,-29.89,-5.58,semaforo rosso
+IEF,defensive,2019-03-08,2019-03-12,86.5633,86.5167,-0.29,-0.05,uscito dalla classifica
+TLT,defensive,2019-03-08,2019-03-12,96.4182,96.4617,0.23,0.05,uscito dalla classifica
+QQQ,etf,2019-03-12,2019-06-04,166.6233,163.7181,-9.38,-1.74,semaforo rosso
+TQQQ,leveraged,2019-03-12,2019-06-04,6.2561,5.7491,-41.87,-8.1,semaforo rosso
+IEF,defensive,2019-06-04,2019-06-05,90.4652,90.5447,0.43,0.09,uscito dalla classifica
+TLT,defensive,2019-06-04,2019-06-05,105.2526,104.4577,-3.87,-0.76,uscito dalla classifica
+QQQ,etf,2019-06-05,2020-03-10,168.2841,192.6736,71.08,14.49,semaforo rosso
+TQQQ,leveraged,2019-06-05,2020-03-10,6.2181,8.078,152.81,29.91,semaforo rosso
+GLD,defensive,2020-03-10,2020-03-11,156.2581,156.1719,-0.33,-0.06,uscito dalla classifica
+TLT,defensive,2020-03-10,2020-03-11,138.039,134.4827,-16.05,-2.58,uscito dalla classifica
+QQQ,etf,2020-03-11,2020-03-12,191.1755,174.4527,-51.61,-8.75,semaforo rosso
+TQQQ,leveraged,2020-03-11,2020-03-12,7.8249,5.8821,-152.61,-24.83,semaforo rosso
+GLD,defensive,2020-03-12,2020-03-16,151.6058,137.4912,-45.81,-9.31,uscito dalla classifica
+TLT,defensive,2020-03-12,2020-03-19,133.0565,119.4602,-52.37,-10.22,uscito dalla classifica
+IEF,defensive,2020-03-16,2020-04-09,101.2106,101.7391,2.34,0.52,uscito dalla classifica
+TLT,defensive,2020-03-20,2020-04-09,124.7423,133.7431,33.11,7.22,uscito dalla classifica
+QQQ,etf,2020-04-09,2022-01-21,194.3972,348.5256,381.49,79.29,semaforo rosso
+TQQQ,leveraged,2020-04-09,2022-01-21,6.6533,28.8156,1538.64,333.1,semaforo rosso
+GLD,defensive,2022-01-21,2022-01-28,172.126,166.4767,-47.3,-3.28,uscito dalla classifica
+QQQ,etf,2022-02-02,2022-02-04,358.8693,343.3083,-61.47,-4.34,semaforo rosso
+TQQQ,leveraged,2022-02-02,2022-02-04,31.0355,27.0365,-175.35,-12.89,semaforo rosso
+GLD,defensive,2022-02-04,2022-02-10,168.124,170.4348,17.86,1.37,uscito dalla classifica
+QQQ,etf,2022-02-10,2022-02-11,348.9244,347.5262,-5.24,-0.4,semaforo rosso
+TQQQ,leveraged,2022-02-10,2022-02-11,28.2241,27.936,-12.82,-1.02,semaforo rosso
+GLD,defensive,2022-02-11,2022-02-14,170.8354,173.6931,21.73,1.67,uscito dalla classifica
+GLD,defensive,2022-02-16,2022-03-30,173.5767,179.6701,45.98,3.51,uscito dalla classifica
+QQQ,etf,2022-03-30,2022-03-31,358.8393,356.5017,-8.68,-0.65,semaforo rosso
+TQQQ,leveraged,2022-03-30,2022-03-31,29.3447,28.8256,-22.64,-1.77,semaforo rosso
+GLD,defensive,2022-03-31,2022-04-05,181.0005,180.8195,-1.32,-0.1,uscito dalla classifica
+QQQ,etf,2022-04-05,2022-04-06,357.4186,345.2573,-44.8,-3.4,semaforo rosso
+TQQQ,leveraged,2022-04-05,2022-04-06,28.9345,26.057,-125.7,-9.94,semaforo rosso
+GLD,defensive,2022-04-06,2022-04-25,179.8699,177.0814,-19.09,-1.55,uscito dalla classifica
+IEF,defensive,2022-08-09,2022-08-10,89.8449,90.1449,4.08,0.33,uscito dalla classifica
+GLD,defensive,2022-12-09,2022-12-12,167.3436,166.3548,-7.23,-0.59,uscito dalla classifica
+IEF,defensive,2022-12-14,2022-12-19,85.983,85.5372,-6.07,-0.52,uscito dalla classifica
+IEF,defensive,2022-12-22,2022-12-29,84.9224,83.7281,-16.39,-1.41,uscito dalla classifica
+GLD,defensive,2022-12-13,2023-01-27,169.2946,179.1804,71.25,5.84,uscito dalla classifica
+IEF,defensive,2023-01-17,2023-01-27,86.1631,86.1969,0.45,0.04,uscito dalla classifica
+QQQ,etf,2023-01-27,2023-01-31,286.0029,284.0579,-8.47,-0.68,semaforo rosso
+TQQQ,leveraged,2023-01-27,2023-01-31,10.6953,10.4848,-23.53,-1.97,semaforo rosso
+GLD,defensive,2023-01-31,2023-02-01,178.9094,179.6601,5.16,0.42,uscito dalla classifica
+TLT,defensive,2023-01-31,2023-02-01,91.5357,92.1639,8.1,0.69,uscito dalla classifica
+QQQ,etf,2023-02-01,2023-03-13,288.3541,280.5596,-33.4,-2.7,semaforo rosso
+TQQQ,leveraged,2023-02-01,2023-03-13,10.9355,9.7801,-125.31,-10.57,semaforo rosso
+GLD,defensive,2023-03-13,2023-03-14,176.7483,177.2613,3.36,0.29,uscito dalla classifica
+QQQ,etf,2023-03-14,2025-03-07,288.2641,482.8185,781.42,67.49,semaforo rosso
+TQQQ,leveraged,2023-03-14,2025-03-07,10.5753,32.3038,2283.73,205.47,semaforo rosso
+IEF,defensive,2025-03-10,2025-03-12,88.9945,88.4158,-16.8,-0.65,uscito dalla classifica
+GLD,defensive,2025-03-07,2025-03-26,269.2245,278.7905,95.59,3.55,uscito dalla classifica
+IEF,defensive,2025-03-25,2025-03-26,88.5543,88.4657,-2.56,-0.1,uscito dalla classifica
+QQQ,etf,2025-03-26,2025-03-27,489.1244,478.8205,-57.48,-2.11,semaforo rosso
+TQQQ,leveraged,2025-03-26,2025-03-27,32.9665,30.9345,-161.45,-6.16,semaforo rosso
+IEF,defensive,2025-03-27,2025-04-14,88.4042,88.2359,-4.79,-0.19,uscito dalla classifica
+IEF,defensive,2025-04-15,2025-05-09,88.6343,89.0155,10.78,0.43,uscito dalla classifica
+GLD,defensive,2025-03-27,2025-05-13,280.6903,298.8705,169.63,6.48,uscito dalla classifica
+QQQ,etf,2025-05-13,2026-03-23,505.8728,588.9654,444.62,16.43,semaforo rosso
+TQQQ,leveraged,2025-05-13,2026-03-23,32.9765,44.8276,933.88,35.94,semaforo rosso
+QQQ,etf,2026-04-09,2026-11-06,604.9323,658.0208,298.04,8.78,semaforo rosso
+TQQQ,leveraged,2026-04-09,2026-11-06,47.8339,52.6936,331.23,10.16,semaforo rosso
