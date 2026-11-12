@@ -1,7 +1,15 @@
 {
   "peak_equity": 1000.0,
   "halted": false,
-  "positions": {},
-  "last_daily": "2026-11-11",
-  "last_rebalance_week": "2026-11-11"
+  "positions": {
+    "TQQQ": {
+      "entry": 59.45077,
+      "qty": 13.0,
+      "stop": -4640.620000000001,
+      "entry_time": "2026-11-12T20:31:19.753394+00:00",
+      "reason": "classifica #1, forza -19.1%, semaforo verde"
+    }
+  },
+  "last_daily": "2026-11-12",
+  "last_rebalance_week": "2026-11-12"
 }
