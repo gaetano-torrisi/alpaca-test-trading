@@ -1,10 +1,10 @@
 {
-  "peak_equity": 1000.0,
+  "peak_equity": 1024.26,
   "halted": false,
   "positions": {
     "TQQQ": {
-      "entry": 59.45077,
-      "qty": 13.0,
+      "entry": 59.448493,
+      "qty": 16.484690444,
       "stop": -4640.620000000001,
       "entry_time": "2026-11-12T20:31:19.753394+00:00",
       "reason": "classifica #1, forza -19.1%, semaforo verde"
