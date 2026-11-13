@@ -1,7 +1,48 @@
 {
   "peak_equity": 1000.0,
   "halted": false,
-  "positions": {},
+  "positions": {
+    "CRWD": {
+      "entry": 0.0,
+      "qty": 0.0,
+      "stop": null,
+      "entry_time": "2026-11-13T10:13:27.067036+00:00",
+      "reason": "acquisto manuale (Gaetano)",
+      "pending": true
+    },
+    "AAPL": {
+      "entry": 0.0,
+      "qty": 0.0,
+      "stop": null,
+      "entry_time": "2026-11-13T10:13:27.140299+00:00",
+      "reason": "acquisto manuale (Gaetano)",
+      "pending": true
+    },
+    "MSFT": {
+      "entry": 0.0,
+      "qty": 0.0,
+      "stop": null,
+      "entry_time": "2026-11-13T10:13:27.214813+00:00",
+      "reason": "acquisto manuale (Gaetano)",
+      "pending": true
+    },
+    "NVDA": {
+      "entry": 0.0,
+      "qty": 0.0,
+      "stop": null,
+      "entry_time": "2026-11-13T10:13:27.289761+00:00",
+      "reason": "acquisto manuale (Gaetano)",
+      "pending": true
+    },
+    "SNDK": {
+      "entry": 0.0,
+      "qty": 0.0,
+      "stop": null,
+      "entry_time": "2026-11-13T10:13:27.370949+00:00",
+      "reason": "acquisto manuale (Gaetano)",
+      "pending": true
+    }
+  },
   "last_daily": "2026-11-12",
   "last_rebalance_week": "2026-46"
 }
