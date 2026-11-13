@@ -1,0 +1,51 @@
+name: Ordine manuale Test Tech
+
+on:
+  workflow_dispatch:
+    inputs:
+      simboli:
+        description: "Simboli separati da virgola (es. CRWD,AAPL)"
+        required: true
+      importo:
+        description: "Dollari per ciascun titolo"
+        required: true
+        default: "196"
+
+concurrency:
+  group: bot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  ordine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Invia gli ordini
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_TECH_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_TECH_SECRET_KEY }}
+          BOT_NAME: tech
+          BOT_CONFIG: config_tech.yaml
+          SIMBOLI: ${{ inputs.simboli }}
+          IMPORTO: ${{ inputs.importo }}
+        run: python -m tbot.manual --simboli "$SIMBOLI" --importo "$IMPORTO"
+      - name: Salva registri e stato
+        if: always()
+        run: |
+          git config user.name "trading-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for d in log state; do if [ -e "$d" ]; then git add -A "$d"; fi; done
+          if ! git diff --cached --quiet; then
+            git commit -m "ordine manuale Test Tech"
+            git pull --rebase
+            git push
+          fi
