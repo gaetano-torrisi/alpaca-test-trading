@@ -1,0 +1,25 @@
+name: Anteprima classifica Test Tech (non opera)
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  anteprima:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Calcola la classifica
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_TECH_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_TECH_SECRET_KEY }}
+          BOT_CONFIG: config_tech.yaml
+        run: python -m tbot.preview | tee -a "$GITHUB_STEP_SUMMARY"
