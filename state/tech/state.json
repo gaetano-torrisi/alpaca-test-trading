@@ -3,46 +3,41 @@
   "halted": false,
   "positions": {
     "CRWD": {
-      "entry": 0.0,
-      "qty": 0.0,
-      "stop": null,
+      "entry": 235.0,
+      "qty": 0.834,
+      "stop": -14406.715000000002,
       "entry_time": "2026-11-13T10:13:27.067036+00:00",
-      "reason": "acquisto manuale (Gaetano)",
-      "pending": true
+      "reason": "acquisto manuale (Gaetano)"
     },
     "AAPL": {
-      "entry": 0.0,
-      "qty": 0.0,
-      "stop": null,
+      "entry": 358.2,
+      "qty": 0.547152428,
+      "stop": -8099.040000000005,
       "entry_time": "2026-11-13T10:13:27.140299+00:00",
-      "reason": "acquisto manuale (Gaetano)",
-      "pending": true
+      "reason": "acquisto manuale (Gaetano)"
     },
     "MSFT": {
-      "entry": 0.0,
-      "qty": 0.0,
-      "stop": null,
+      "entry": 519.84,
+      "qty": 0.377019852,
+      "stop": -15057.97,
       "entry_time": "2026-11-13T10:13:27.214813+00:00",
-      "reason": "acquisto manuale (Gaetano)",
-      "pending": true
+      "reason": "acquisto manuale (Gaetano)"
     },
     "NVDA": {
-      "entry": 0.0,
-      "qty": 0.0,
-      "stop": null,
+      "entry": 170.0,
+      "qty": 1.152882352,
+      "stop": -9127.609999999995,
       "entry_time": "2026-11-13T10:13:27.289761+00:00",
-      "reason": "acquisto manuale (Gaetano)",
-      "pending": true
+      "reason": "acquisto manuale (Gaetano)"
     },
     "SNDK": {
-      "entry": 0.0,
-      "qty": 0.0,
-      "stop": null,
+      "entry": 915.92,
+      "qty": 0.21398157,
+      "stop": -105549.33,
       "entry_time": "2026-11-13T10:13:27.370949+00:00",
-      "reason": "acquisto manuale (Gaetano)",
-      "pending": true
+      "reason": "acquisto manuale (Gaetano)"
     }
   },
-  "last_daily": "2026-11-12",
+  "last_daily": "2026-11-13",
   "last_rebalance_week": "2026-46"
 }
