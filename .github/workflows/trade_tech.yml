@@ -2,7 +2,7 @@ name: Bot Test Tech (ogni 15 minuti a borsa aperta)
 
 on:
   schedule:
-    - cron: "*/15 13-21 * * 1-5"   # lun-ven, copre la seduta di Wall Street (15:30-22:00 ora italiana)
+    - cron: "7,22,37,52 13-21 * * 1-5"   # minuti sfalsati (meno ritardi di GitHub); lun-ven, copre la seduta di Wall Street (15:30-22:00 ora italiana)
   workflow_dispatch: {}
 
 concurrency:
