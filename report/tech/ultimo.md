@@ -1,23 +1,23 @@
-# Report del 17/11/2026 – conto Test Tech
+# Report del 18/11/2026 – conto Test Tech
 
 | | |
 |---|---|
-| Capitale | 941.65 $ |
-| Variazione di oggi | -6.01 $ (-0.63%) |
-| S&P 500 (SPY) oggi | -1.01% |
-| Dall'inizio del test | -5.84% |
-| Distanza dal massimo | -5.84% |
+| Capitale | 935.27 $ |
+| Variazione di oggi | -1.13 $ (-0.12%) |
+| S&P 500 (SPY) oggi | -0.31% |
+| Dall'inizio del test | -6.47% |
+| Distanza dal massimo | -6.47% |
 
-## Posizioni aperte (5)
-
-| Titolo | Quantità | Prezzo medio | Prezzo attuale | P&L |
-|---|---|---|---|---|
-| AAPL | 0.547152 | 358.20 | 350.30 | -4.32 $ (-2.2%) |
-| CRWD | 0.834 | 235.00 | 220.00 | -12.51 $ (-6.4%) |
-| MSFT | 0.37702 | 519.84 | 508.50 | -4.28 $ (-2.2%) |
-| NVDA | 1.15288 | 170.00 | 157.12 | -14.85 $ (-7.6%) |
-| SNDK | 0.213982 | 915.92 | 811.34 | -22.38 $ (-11.4%) |
-
-## Operazioni chiuse oggi (0)
+## Posizioni aperte (0)
 
 Nessuna.
+
+## Operazioni chiuse oggi (5)
+
+| Titolo | P&L | % | Motivo |
+|---|---|---|---|
+| CRWD | -2.10 $ | -1.07% | semaforo rosso |
+| AAPL | -2.90 $ | -1.48% | semaforo rosso |
+| MSFT | -6.17 $ | -3.15% | semaforo rosso |
+| NVDA | -20.63 $ | -10.52% | semaforo rosso |
+| SNDK | -32.92 $ | -16.80% | semaforo rosso |
