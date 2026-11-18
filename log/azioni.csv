@@ -1,2 +1,4 @@
 ora,azione,simbolo,quantita_o_importo,prezzo,motivo
 2026-11-12 15:31 ET,COMPRA,TQQQ,980.00$,mercato,"classifica #1, forza -19.1%, semaforo verde"
+2026-11-18 11:34 ET,VENDI,TQQQ,16.4847,mercato,semaforo rosso
+2026-11-18 11:34 ET,CHIUSA,TQQQ,16.4847,51.58,"semaforo rosso, P&L -129.71 $"
