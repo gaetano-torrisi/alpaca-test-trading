@@ -4,3 +4,13 @@ ora,azione,simbolo,quantita_o_importo,prezzo,motivo
 2026-11-13 05:13 ET,COMPRA,MSFT,196.00$,mercato,acquisto manuale (Gaetano)
 2026-11-13 05:13 ET,COMPRA,NVDA,196.00$,mercato,acquisto manuale (Gaetano)
 2026-11-13 05:13 ET,COMPRA,SNDK,196.00$,mercato,acquisto manuale (Gaetano)
+2026-11-18 11:35 ET,VENDI,AAPL,0.5472,mercato,semaforo rosso
+2026-11-18 11:35 ET,VENDI,CRWD,0.834,mercato,semaforo rosso
+2026-11-18 11:35 ET,VENDI,MSFT,0.377,mercato,semaforo rosso
+2026-11-18 11:35 ET,VENDI,NVDA,1.1529,mercato,semaforo rosso
+2026-11-18 11:35 ET,VENDI,SNDK,0.214,mercato,semaforo rosso
+2026-11-18 11:35 ET,CHIUSA,CRWD,0.834,232.48,"semaforo rosso, P&L -2.10 $"
+2026-11-18 11:35 ET,CHIUSA,AAPL,0.5472,352.9,"semaforo rosso, P&L -2.90 $"
+2026-11-18 11:35 ET,CHIUSA,MSFT,0.377,503.48,"semaforo rosso, P&L -6.17 $"
+2026-11-18 11:35 ET,CHIUSA,NVDA,1.1529,152.11,"semaforo rosso, P&L -20.63 $"
+2026-11-18 11:35 ET,CHIUSA,SNDK,0.214,762.09,"semaforo rosso, P&L -32.92 $"
