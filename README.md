@@ -32,6 +32,14 @@ Backtest 2016–2026 con l'elenco *del 2016*: circa +26% l'anno, perdita massima
 Registri separati in `log/tech/`, `state/tech/`, `report/tech/`. Chiavi: secrets `ALPACA_TECH_API_KEY` e
 `ALPACA_TECH_SECRET_KEY`. Per fermarlo: *Actions → Bot Test Tech → Disable workflow*.
 
+## Il "motore" (dal 18/11/2026)
+
+Le esecuzioni programmate gratuite di GitHub partivano con ore di ritardo (anche a borsa chiusa).
+Ora i bot sono avviati dal workflow **"Motore bot (giro continuo)"** (`motore.yml` + `scripts/motore.sh`):
+un turno di ~5h40m esegue entrambi i bot ogni 15 minuti a borsa aperta (lun–ven 13–22 UTC) e il report
+serale, poi si riavvia da solo. Una programmazione oraria fa da riserva se la catena si interrompe.
+**Per fermare tutto**: *Actions → Motore bot → ⋯ → Disable workflow* (e annullare il turno in corso).
+
 ## Come funziona
 
 | Quando | Cosa succede |

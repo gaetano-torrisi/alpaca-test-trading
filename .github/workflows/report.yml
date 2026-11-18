@@ -1,8 +1,7 @@
 name: Report giornaliero
 
 on:
-  schedule:
-    - cron: "30 21 * * 1-5"   # 22:30 ora italiana (inverno), dopo la chiusura di Wall Street
+  # Il report serale ora lo genera il "Motore bot"; questo resta per un avvio manuale.
   workflow_dispatch: {}
 
 concurrency:
