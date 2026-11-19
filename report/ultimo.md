@@ -1,19 +1,17 @@
-# Report del 18/11/2026 – conto Test Trading
+# Report del 19/11/2026 – conto Test Trading
 
 | | |
 |---|---|
-| Capitale | 870.28 $ |
-| Variazione di oggi | -3.79 $ (-0.43%) |
-| S&P 500 (SPY) oggi | -0.31% |
-| Dall'inizio del test | -12.97% |
-| Distanza dal massimo | -15.03% |
+| Capitale | 870.25 $ |
+| Variazione di oggi | +0.00 $ (+0.00%) |
+| S&P 500 (SPY) oggi | -1.96% |
+| Dall'inizio del test | -12.98% |
+| Distanza dal massimo | -15.04% |
 
 ## Posizioni aperte (0)
 
 Nessuna.
 
-## Operazioni chiuse oggi (1)
+## Operazioni chiuse oggi (0)
 
-| Titolo | P&L | % | Motivo |
-|---|---|---|---|
-| TQQQ | -129.71 $ | -13.24% | semaforo rosso |
+Nessuna.
