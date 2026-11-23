@@ -1,6 +1,6 @@
 # Riepilogo ultimi 7 giorni
 
-Capitale: 975 $ → 935 $ (-4.04%), minimo 935 $, massimo 975 $
+Capitale: 950 $ → 935 $ (-1.53%), minimo 935 $, massimo 950 $
 Operazioni chiuse: 5
 Vincenti: 0 (0%), P&L totale -65 $
 
