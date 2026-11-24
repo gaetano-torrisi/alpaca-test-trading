@@ -1,10 +1,10 @@
-# Report del 23/11/2026 – conto Test Trading
+# Report del 24/11/2026 – conto Test Trading
 
 | | |
 |---|---|
 | Capitale | 870.25 $ |
 | Variazione di oggi | +0.00 $ (+0.00%) |
-| S&P 500 (SPY) oggi | +4.71% |
+| S&P 500 (SPY) oggi | -0.49% |
 | Dall'inizio del test | -12.98% |
 | Distanza dal massimo | -15.04% |
 
