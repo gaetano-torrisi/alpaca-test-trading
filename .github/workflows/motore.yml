@@ -1,11 +1,9 @@
 name: Motore bot (giro continuo)
 
 # Un turno dura ~5h40m: esegue i bot ogni 15 minuti a borsa aperta e il report serale,
-# poi si riavvia da solo. La programmazione oraria è solo una riserva, nel caso la catena si interrompa.
+# SOSPESO il 26/11/2026 su richiesta di Gaetano: niente avvio orario né riavvio automatico (solo avvio manuale).
 on:
   workflow_dispatch: {}
-  schedule:
-    - cron: "23 * * * *"
 
 concurrency:
   group: motore
@@ -33,8 +31,3 @@ jobs:
           TECH_KEY: ${{ secrets.ALPACA_TECH_API_KEY }}
           TECH_SECRET: ${{ secrets.ALPACA_TECH_SECRET_KEY }}
         run: bash scripts/motore.sh
-      - name: Riavvia il motore per il turno successivo
-        if: always()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run motore.yml --ref main
